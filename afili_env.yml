@@ -1,0 +1,32 @@
+name: afili_env
+channels:
+  - conda-forge
+  - bioconda
+  - defaults
+  - conda-forge/label/broken
+  - r
+dependencies:
+  - any2fasta=0.4.2
+  - biopython=1.76
+  - blast-legacy=2.2.26
+  - conda=4.8.5
+  - fastani=1.31
+  - fasttree=2.1.10
+  - hmmer=3.3
+  - mlst=2.19.0
+  - mummer=3.23
+  - newick_utils=1.6
+  - parallel=20200122
+  - perl=5.26.2
+  - pip=20.0.2
+  - prokka=1.14.6
+  - python=3.7.6
+  - r-base=3.6.3
+  - r-pheatmap=1.0.12
+  - readline=8.0
+  - roary=3.13.0
+  - samtools=1.9
+  - snakemake=5.11.2
+  - tbl2asn-forever=25.7.1f=0
+  - pip:
+    - ncbi-genome-download==0.2.12
