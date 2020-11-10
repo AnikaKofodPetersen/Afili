@@ -42,8 +42,23 @@ The metadata can manually be adapted to suit your tree visualizer.
 For the case of ITOL, please add your visualization type (LABEL, DATASET_BINARY etc.) followed by the seperator line(SEPERATOR TAB) and the data indicator (DATA).
 The header should start with # to ensure proper reading by ITOL.
 
+#### Where do I find my results?
+Your results will be placed in a folder called RESULTS inside the folder containing your fasta files
+
+### OUTPUT
+In the folder containing your fasta files, all new phage-like elements are found as seperate fasta files and an output.log file
+In the folder RESULTS are the following output files:
+* phage_completeness.txt	A file containing information of how many genes are shared between the phage-like element and the original phage
+* phage_coordinates.txt		A file containing information about the coordinates of the phage_like element in the original phage
+* SpeciesMetadata.txt		A file containing species specification (MLST) on the host in which the phage like element was found
+* orginalsMetadata.txt		A file containing the names of the original phage(s) for the sake of tree visualization
+* ANI_matrix.txt			A file containing the Average Nucleotide Identity matrix for the comparrision of all the phage_like elements
+* ANI.pdf					A picture of the Average Nucleotide Identity heat map
+* my_tree_collected_analysis_rerooted. nw 	A phylogenetic tree in newick format of all phage-like elements and original phage(s).
+
+
 #### MANUAL DATABASE ALTERATIONS
-One can delete and add genomes in the databases by deleting or adding database files in the db/folders
+The user can delete and add genomes in the databases by deleting or adding database files in the db/folders
 
 
 ### SPECIFICATIONS

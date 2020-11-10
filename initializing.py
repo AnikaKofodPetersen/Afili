@@ -22,6 +22,7 @@ scripts = "/".join(scripts.split("/")[:-1])
 
 #Define user command line input in scripts
 arguments = sys.argv[1:]
+cores = sys.argv[-1]
 for argument in range(0,len(arguments)):
 	#Fasta files(s)
 	if arguments[argument].startswith("-F") or arguments[argument].startswith("--fasta"):
@@ -86,17 +87,16 @@ if database_present == False:
 			print("Downloading database for you. This might take some time.")
 			if typestrain == True:
 				print("Only downloading type strains.")
-				command = "ncbi-genome-download --format fasta --assembly-level complete,chromosome -M type --genus " + str(genus) + " bacteria 2> /dev/null"
+				command = "ncbi-genome-download --format fasta --assembly-level complete,chromosome -M  type --genus " + str(genus) + " bacteria --parallel "+str(cores)+" 2> /dev/null"
 				output = subprocess.check_output(command, shell=True)
 				good_genus = True
 			else:
-				command = "ncbi-genome-download --format fasta --assembly-level complete,chromosome --genus " + str(genus) + " bacteria 2> /dev/null"
+				command = "ncbi-genome-download --format fasta --assembly-level complete,chromosome --genus " + str(genus) + " bacteria --parallel "+str(cores)+" 2> /dev/null"
 				output = subprocess.check_output(command, shell=True)
 				good_genus = True
 		
-		#If the genus was not found in NCBI, try again
-		except:
-			genus = str(input("Please retype your genus. Make sure everything is spelled correcly: "))
+		except Exception as error:
+			genus = str(input("Please retype your genus. Make sure everything is spelled correctly: "))
 			genus = genus.lower()
 			genus = "".join(genus.split())
 

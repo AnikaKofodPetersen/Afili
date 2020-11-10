@@ -22,7 +22,7 @@ if [[ $add == *"-h"* ]] || [[ $add == *"--help"* ]]; then
 	exit 1
 fi
 
-$afili_path/initializing.py $add
+$afili_path/initializing.py $add $cores
 #Check for errors
 errors=$?
 if [ $errors -ne 0 ]; then
