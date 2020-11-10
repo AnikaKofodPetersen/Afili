@@ -48,13 +48,13 @@ Your results will be placed in a folder called RESULTS inside the folder contain
 ### OUTPUT
 In the folder containing your fasta files, all new phage-like elements are found as seperate fasta files and an output.log file
 In the folder RESULTS are the following output files:
-* phage_completeness.txt	A file containing information of how many genes are shared between the phage-like element and the original phage
-* phage_coordinates.txt		A file containing information about the coordinates of the phage_like element in the original phage
-* SpeciesMetadata.txt		A file containing species specification (MLST) on the host in which the phage like element was found
-* orginalsMetadata.txt		A file containing the names of the original phage(s) for the sake of tree visualization
-* ANI_matrix.txt			A file containing the Average Nucleotide Identity matrix for the comparrision of all the phage_like elements
-* ANI.pdf					A picture of the Average Nucleotide Identity heat map
-* my_tree_collected_analysis_rerooted. nw 	A phylogenetic tree in newick format of all phage-like elements and original phage(s).
+* phage_completeness.txt:	A file containing information of how many genes are shared between the phage-like element and the original phage
+* phage_coordinates.txt:		A file containing information about the coordinates of the phage_like element in the original phage
+* SpeciesMetadata.txt:		A file containing species specification (MLST) on the host in which the phage like element was found
+* orginalsMetadata.txt:		A file containing the names of the original phage(s) for the sake of tree visualization
+* ANI_matrix.txt:			A file containing the Average Nucleotide Identity matrix for the comparrision of all the phage_like elements
+* ANI.pdf:					A picture of the Average Nucleotide Identity heat map
+* my_tree_collected_analysis_rerooted.nw: 	A phylogenetic tree in newick format of all phage-like elements and original phage(s).
 
 
 #### MANUAL DATABASE ALTERATIONS
