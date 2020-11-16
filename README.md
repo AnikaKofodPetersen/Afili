@@ -45,6 +45,9 @@ The header should start with # to ensure proper reading by ITOL.
 #### Where do I find my results?
 Your results will be placed in a folder called RESULTS inside the folder containing your fasta files
 
+#### How do I know how many genes are in the core genome?
+The number of core genes and the difinition of core genome can be seen lastly in the output.log file.
+
 ### OUTPUT
 In the folder containing your fasta files, all new phage-like elements are found as seperate fasta files and an output.log file
 In the folder RESULTS are the following output files:
