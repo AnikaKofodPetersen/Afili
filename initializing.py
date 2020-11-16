@@ -12,7 +12,7 @@ coverage = 70
 identity = 70 
 max_thres_set = 150
 min_thres_set = 50
-min_genes_set = 50
+min_genes_set = 60
 gap_thres_set = 15
 curdir = str(os.getcwd())
 
