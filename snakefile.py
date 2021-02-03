@@ -48,7 +48,7 @@ rule Filter_results_from_BLAST:
 		"{}/filtering_done".format(scripts)
 	run:
 		os.chdir("{}/".format(scripts)),
-		os.system("{}/filter.py >> output.log".format(scripts))
+		os.system("{}/filter.py ".format(scripts))
 
 
 #Collecting fasta files for bacterial prophage hosts with script4
