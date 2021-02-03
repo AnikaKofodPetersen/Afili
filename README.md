@@ -50,7 +50,7 @@ Your results will be placed in a folder called RESULTS inside the folder contain
 The number of core genes and the difinition of core genome can be seen lastly in the output.log file.
 
 ### OUTPUT
-In the folder containing your fasta files, all new phage-like elements are found as seperate fasta files and an output.log file
+In the folder containing your fasta files, all new phage-like elements are found as seperate fasta files and an output.log file.
 In the folder RESULTS are the following output files:
 * phage_completeness.txt:	A file containing information of how many genes are shared between the phage-like element and the original phage
 * phage_coordinates.txt:		A file containing information about the coordinates of the phage_like element in the original phage
