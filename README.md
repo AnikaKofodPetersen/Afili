@@ -2,6 +2,7 @@
 The following is a bioinformatic workflow designed to find related phages and phage remnants. 
 The workflow is not restricted to phages by any phage database.
 
+##### Notice: Afili will create a new conda environment during setup
 
 ### INSTALLATION
 First, clone the repository:
