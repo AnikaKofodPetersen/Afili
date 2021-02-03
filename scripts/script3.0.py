@@ -108,17 +108,17 @@ for entry in deep_copy:
 		del predicted_phages[entry]
 		total_before += 1
 		gene_filter += 1
-		os.system(echo "Phage deleted because of gene amount \n" >> ../"output.log")
+		#print("Phage deleted because of gene amount")
 	elif float(deep_copy[entry]["end"])-float(deep_copy[entry]["start"]) > max_length:
 		del predicted_phages[entry]
 		total_before += 1
 		max_length_filter += 1
-		os.system(echo "Phage deleted because of max length \n" >> ../"output.log")
+		#print("Phage deleted because of max length")
 	elif float(deep_copy[entry]["end"])-float(deep_copy[entry]["start"]) < min_length:
 		del predicted_phages[entry]
 		total_before += 1
 		min_length_filter += 1
-		os.system(echo "Phage deleted because of min length \n" >> ../"output.log")
+		#print("Phage deleted because of min length")
 
 #Make a 0-error
 if len(predicted_phages) == 0:
