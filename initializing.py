@@ -22,7 +22,7 @@ scripts = "/".join(scripts.split("/")[:-1])
 
 #Define user command line input in scripts
 arguments = sys.argv[1:]
-cores = subprocess.check_output(['nproc'])]
+cores = subprocess.check_output(['nproc']).decode("utf-8")
 for argument in range(0,len(arguments)):
 	#Fasta files(s)
 	if arguments[argument].startswith("-F") or arguments[argument].startswith("--fasta"):
