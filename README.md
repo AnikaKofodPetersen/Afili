@@ -19,6 +19,14 @@ $ cd /path/to/Afili
 
 $  ./Install.sh
 
+$ conda env create -f afili_env.yml
+
+$ conda activate afili_env
+
+$ prokka --setupdb
+
+$ parallel --citation
+
 $ conda activate afili_env
 
 Lastly, run a test with the available test file as follows:
