@@ -91,12 +91,20 @@ if database_present == False:
 			if typestrain == True:
 				print("Only downloading type strains.")
 				command = "ncbi-genome-download -F 'fasta' -l 'complete' -M  'type' --genus " + str(genus) + " bacteria -p "+str(int(cores)*2)+" 2> /dev/null"
-				output = subprocess.check_output(command, shell=True)
-				good_genus = True
+				try:
+					output = subprocess.check_output(command, shell=True)
+				except:
+					print("An error occured while downloading the genomes for your genus. Please try again later."
+				else:
+					      good_genus = True
 			else:
 				command = "ncbi-genome-download -F 'fasta' -l 'complete' --genus " + str(genus) + " bacteria -p "+str(int(cores)*2)+" 2> /dev/null"
-				output = subprocess.check_output(command, shell=True)
-				good_genus = True
+				try:
+					      output = subprocess.check_output(command, shell=True)
+				except:
+					      print("An error occured while downloading the genomes for your genus. Please try again later."
+				else:
+						    good_genus = True
 		
 		except Exception as error:
 			genus = str(input("Please retype your genus. Make sure everything is spelled correctly: "))
