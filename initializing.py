@@ -15,6 +15,7 @@ min_thres_set = 50
 min_genes_set = 60
 gap_thres_set = 15
 curdir = str(os.getcwd())
+cores = subprocess.check_output(['nproc']).decode("utf-8")
 
 #Define script path
 scripts = sys.argv[0]
@@ -22,7 +23,6 @@ scripts = "/".join(scripts.split("/")[:-1])
 
 #Define user command line input in scripts
 arguments = sys.argv[1:]
-cores = subprocess.check_output(['nproc']).decode("utf-8")
 for argument in range(0,len(arguments)):
 	#Fasta files(s)
 	if arguments[argument].startswith("-F") or arguments[argument].startswith("--fasta"):
@@ -51,8 +51,11 @@ for argument in range(0,len(arguments)):
 	if arguments[argument].startswith("-i") or arguments[argument].startswith("--identity"):
 		identity = arguments[argument+1]
 	#Percent identity used in BLAST
-	if arguments[argument].startswith("-c") or arguments[argument].startswith("--coverage"):
+	if arguments[argument].startswith("-cov") or arguments[argument].startswith("--coverage"):
 		coverage = arguments[argument+1]
+	#Mac amount of cores
+	if arguments[argument].startswith("-cor") or arguments[argument].startswith("--cores"):
+		cores = arguments[argument+1]
 		
 	
 try:
