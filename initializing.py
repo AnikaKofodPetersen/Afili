@@ -98,6 +98,7 @@ if database_present == False:
 					good_genus = True
 			except Exception as error:
 				download_error = True
+				print(error)
 				break
 		else:
 			command = "ncbi-genome-download -F 'fasta' -l 'complete' --genus " + str(genus) + " bacteria -p "+str(int(cores)*2)+" 2> /dev/null"
@@ -107,17 +108,16 @@ if database_present == False:
 					good_genus = True
 			except Exception as error:
 				download_error = True
+				print(error)
 				break
 				
 
 
 	if download_error == True and good_genus == False:
 		print("Something went wrong while downloading the database fasta files.\nThe name of the genus did not give any database hits at the moment. \n Please try again later or with another genus.")
-		print(error)
 		sys.exit(1)
 	elif good_genus == True:
 		print("Something went wrong while downloading the database fasta files.\n Please try again later or with another genus.")
-		print(error)
 		sys.exit(1)
 
 		
