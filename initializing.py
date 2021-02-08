@@ -94,8 +94,6 @@ if database_present == False:
 			command = "ncbi-genome-download -F 'fasta' -l 'complete' -M  'type' --genus " + str(genus) + " bacteria -p "+str(int(cores)*2)+" 2> /dev/null"
 			try:
 				output = subprocess.check_output(command, shell=True)
-				if not output.startswith("ERROR: No downloads matched your filter."):
-					good_genus = True
 			except Exception as error:
 				download_error = True
 				print(error)
@@ -104,24 +102,16 @@ if database_present == False:
 			command = "ncbi-genome-download -F 'fasta' -l 'complete' --genus " + str(genus) + " bacteria -p "+str(int(cores)*2)+" 2> /dev/null"
 			try:
 				output = subprocess.check_output(command, shell=True)
-				if not output.startswith("ERROR: No downloads matched your filter."):
-					good_genus = True
 			except Exception as error:
 				download_error = True
 				print(error)
 				break
-				
 
-
-	if download_error == True and good_genus == False:
-		print("Something went wrong while downloading the database fasta files.\nThe name of the genus did not give any database hits at the moment. \n Please try again later or with another genus.")
-		sys.exit(1)
-	elif good_genus == True:
+	if download_error == True 
 		print("Something went wrong while downloading the database fasta files.\n Please try again later or with another genus.")
 		sys.exit(1)
 
 		
-	
 	#Collecting both individual fastas and all fastas in one file
 	os.system("cat refseq/bacteria/**/*.fna.gz >> " + str(genus) + "_DNA_cds.fna.gz")
 	os.system("mv refseq/bacteria/**/*.fna.gz ./")
