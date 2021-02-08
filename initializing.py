@@ -83,22 +83,29 @@ for dire in os.listdir(scripts):
 if database_present == False:
 	os.chdir(scripts+"/database_fastas")
 	good_genus = False
+	test_try = 0
 	
 	#tree attempts to get the spelling correct
-	for attempt in range(1,3):
-		try:
-			print("Downloading database for you. This might take some time.")
-			if typestrain == True:
-				print("Only downloading type strains.")
-				command = "ncbi-genome-download -F 'fasta' -l 'complete' -M  'type' --genus " + str(genus) + " bacteria -p "+str(int(cores)*2)+" 2> /dev/null"
+	while good_genus == False or test_try < 3:
+		print("Downloading database for you. This might take some time.")
+		if typestrain == True:
+			print("Only downloading type strains.")
+			command = "ncbi-genome-download -F 'fasta' -l 'complete' -M  'type' --genus " + str(genus) + " bacteria -p "+str(int(cores)*2)+" 2> /dev/null"
+			try:
 				output = subprocess.check_output(command, shell=True)
-				good_genus = True
-			else:
-				command = "ncbi-genome-download -F 'fasta' -l 'complete' --genus " + str(genus) + " bacteria -p "+str(int(cores)*2)+" 2> /dev/null"
+			except:
+				print("Something went wrong while downloading the database fasta files. \n Please try again later or with another genus.")
+				break
+			good_genus = True
+		else:
+			command = "ncbi-genome-download -F 'fasta' -l 'complete' --genus " + str(genus) + " bacteria -p "+str(int(cores)*2)+" 2> /dev/null"
+			try:
 				output = subprocess.check_output(command, shell=True)
-				good_genus = True
-		
-		except Exception as error:
+			except:
+				print("Something went wrong while downloading the database fasta files. \n Please try again later or with another genus.")
+				break
+			good_genus = True
+		if good_genus == False and test_try <3:
 			genus = str(input("Please retype your genus. Make sure everything is spelled correctly: "))
 			genus = genus.lower()
 			genus = "".join(genus.split())
@@ -106,7 +113,7 @@ if database_present == False:
 		else:
 			break
 	if good_genus == False:
-		print("None of the three genera/spellings gave any database hits.\nExiting")
+		print("None of the genera/spellings gave any database hits at the moment.\nExiting")
 		sys.exit(1)
 		
 			
