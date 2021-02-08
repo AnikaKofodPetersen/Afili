@@ -110,19 +110,16 @@ if database_present == False:
 				break
 				
 
-		if good_genus == False and test_try <3:
-			genus = str(input("Please retype your genus. Make sure everything is spelled correctly: "))
-			genus = genus.lower()
-			genus = "".join(genus.split())
-		elif download_error == True:
-			print("Something went wrong while downloading the database fasta files. \n Please try again later or with another genus.")
-			print(error)
-			sys.exit(1)
-		else:
-			break
+
+	if download_error == True:
+		print("Something went wrong while downloading the database fasta files. \n Please try again later or with another genus.")
+		print(error)
+		sys.exit(1)
+	else:
+		break
 
 	if good_genus == False:
-		print("None of the genera/spellings gave any database hits at the moment.\nExiting")
+		print("The name of the genus did not give any database hits at the moment.\nExiting")
 		sys.exit(1)
 		
 			
