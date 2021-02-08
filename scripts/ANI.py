@@ -24,14 +24,30 @@ with open("../newick_trees/SpeciesMetadata.txt",'r') as species:
 
 #Make query list
 query.pop(0)
+count = 0
 with open("query_list.txt","a") as query_list:
 	for entry in query:
+		count += 1
 		query_list.write(entry + "\n")		
 
 #Perform an ANI analysis
 print("Performing an ANI analysis (average nucleotide identity). This might take a while.")
-os.system("fastANI --ql query_list.txt --rl query_list.txt --matrix -o ANI_output  > /dev/null 2>&1")
-
+try:
+	os.system("fastANI --ql query_list.txt --rl query_list.txt --matrix -o ANI_output  > /dev/null 2>&1")
+except Exception as error:
+	print(error)
+	nul_matrix =["98"]
+	count = 0
+	with open("query_list.txt","r") as query_list:
+    		for line in query_list:
+        		count += 1
+        		add = line[:-1]+ "\t"
+        		add += ("0\t"*count)
+        		nul_matrix.append(add[:])
+	with open("ANI_output.matrix", "a") as nul_file:
+    		for line in nul_matrix:
+        		nul_file.write(line + "\n")
+			
 
 #change directory and format output
 os.chdir("..")
