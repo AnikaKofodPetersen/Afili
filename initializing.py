@@ -107,7 +107,7 @@ if database_present == False:
 				print(error)
 				break
 
-	if download_error == True 
+	if download_error == True: 
 		print("Something went wrong while downloading the database fasta files.\n Please try again later or with another genus.")
 		sys.exit(1)
 
