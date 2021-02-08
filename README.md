@@ -86,7 +86,9 @@ Possible inputs
 
 [-i --identity (float) Percent identity threshold used in BLAST]
 
-[-c --coverage (float) Percent query coverage threshold used in BLAST]
+[-cov --coverage (float) Percent query coverage threshold used in BLAST]
+
+[-cor --cores (float) Max amount of cores used by Afili]
 
 [--max (float) Maximal percent length relative to average of original samples]
 
