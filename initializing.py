@@ -96,7 +96,8 @@ if database_present == False:
 			except:
 				print("Something went wrong while downloading the database fasta files. \n Please try again later or with another genus.")
 				break
-			good_genus = True
+			else:
+				good_genus = True
 		else:
 			command = "ncbi-genome-download -F 'fasta' -l 'complete' --genus " + str(genus) + " bacteria -p "+str(int(cores)*2)+" 2> /dev/null"
 			try:
@@ -104,7 +105,8 @@ if database_present == False:
 			except:
 				print("Something went wrong while downloading the database fasta files. \n Please try again later or with another genus.")
 				break
-			good_genus = True
+			else:
+				good_genus = True
 		if good_genus == False and test_try <3:
 			genus = str(input("Please retype your genus. Make sure everything is spelled correctly: "))
 			genus = genus.lower()
