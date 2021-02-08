@@ -96,7 +96,7 @@ if database_present == False:
 				output = subprocess.check_output(command, shell=True)
 				if not output.startswith("ERROR: No downloads matched your filter."):
 					good_genus = True
-			except Error as error:
+			except Exception as error:
 				download_error = True
 				break
 		else:
@@ -105,7 +105,7 @@ if database_present == False:
 				output = subprocess.check_output(command, shell=True)
 				if not output.startswith("ERROR: No downloads matched your filter."):
 					good_genus = True
-			except Error as error:
+			except Exception as error:
 				download_error = True
 				break
 				
