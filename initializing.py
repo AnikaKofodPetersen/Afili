@@ -111,18 +111,15 @@ if database_present == False:
 				
 
 
-	if download_error == True:
-		print("Something went wrong while downloading the database fasta files. \n Please try again later or with another genus.")
+	if download_error == True and good_genus == False:
+		print("Something went wrong while downloading the database fasta files.\nThe name of the genus did not give any database hits at the moment. \n Please try again later or with another genus.")
 		print(error)
 		sys.exit(1)
-	else:
-		break
-
-	if good_genus == False:
-		print("The name of the genus did not give any database hits at the moment.\nExiting")
+	elif good_genus == True:
+		print("Something went wrong while downloading the database fasta files.\n Please try again later or with another genus.")
+		print(error)
 		sys.exit(1)
-		
-			
+
 		
 	
 	#Collecting both individual fastas and all fastas in one file
