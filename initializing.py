@@ -114,7 +114,7 @@ if database_present == False:
 			genus = str(input("Please retype your genus. Make sure everything is spelled correctly: "))
 			genus = genus.lower()
 			genus = "".join(genus.split())
-		elif download_error = True:
+		elif download_error == True:
 			print("Something went wrong while downloading the database fasta files. \n Please try again later or with another genus.")
 			print(error)
 			sys.exit(1)
