@@ -84,6 +84,7 @@ if database_present == False:
 	os.chdir(scripts+"/database_fastas")
 	good_genus = False
 	test_try = 0
+	download_error = False
 	
 	#tree attempts to get the spelling correct
 	while good_genus == False or test_try < 3:
@@ -93,27 +94,33 @@ if database_present == False:
 			command = "ncbi-genome-download -F 'fasta' -l 'complete' -M  'type' --genus " + str(genus) + " bacteria -p "+str(int(cores)*2)+" 2> /dev/null"
 			try:
 				output = subprocess.check_output(command, shell=True)
-			except:
-				print("Something went wrong while downloading the database fasta files. \n Please try again later or with another genus.")
+				if not output.startswith("ERROR: No downloads matched your filter."):
+					good_genus = True
+			except Error as error:
+				download_error = True
 				break
-			else:
-				good_genus = True
 		else:
 			command = "ncbi-genome-download -F 'fasta' -l 'complete' --genus " + str(genus) + " bacteria -p "+str(int(cores)*2)+" 2> /dev/null"
 			try:
 				output = subprocess.check_output(command, shell=True)
-			except:
-				print("Something went wrong while downloading the database fasta files. \n Please try again later or with another genus.")
+				if not output.startswith("ERROR: No downloads matched your filter."):
+					good_genus = True
+			except Error as error:
+				download_error = True
 				break
-			else:
-				good_genus = True
+				
+
 		if good_genus == False and test_try <3:
 			genus = str(input("Please retype your genus. Make sure everything is spelled correctly: "))
 			genus = genus.lower()
 			genus = "".join(genus.split())
-
+		elif download_error = True:
+			print("Something went wrong while downloading the database fasta files. \n Please try again later or with another genus.")
+			print(error)
+			sys.exit(1)
 		else:
 			break
+
 	if good_genus == False:
 		print("None of the genera/spellings gave any database hits at the moment.\nExiting")
 		sys.exit(1)
