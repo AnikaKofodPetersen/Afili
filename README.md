@@ -17,8 +17,6 @@ Third, move to the Afili folder and initiate installation of all necessary depen
 
 $ cd /path/to/Afili
 
-$  ./Install.sh
-
 $ conda env create -f afili_env.yml
 
 $ conda activate afili_env
