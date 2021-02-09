@@ -38,12 +38,12 @@ except Exception as error:
 	print(error)
 if not "ANI_output.matrix" in os.listdir():
 	nul_matrix =[str(count)]
-	count = 0
+	count = -1
 	with open("query_list.txt","r") as query_list:
     		for line in query_list:
         		count += 1
-        		add = line[:-1]+ "\t"
-        		add += ("0\t"*count)
+        		add = line[:-1]
+        		add += ("\t0"*count)
         		nul_matrix.append(add[:])
 	with open("ANI_output.matrix", "a") as nul_file:
     		for line in nul_matrix:
