@@ -37,7 +37,7 @@ try:
 except Exception as error:
 	print(error)
 if not "ANI_output.matrix" in os.listdir():
-	nul_matrix =["98"]
+	nul_matrix =[str(count)]
 	count = 0
 	with open("query_list.txt","r") as query_list:
     		for line in query_list:
