@@ -154,7 +154,7 @@ rule ANI:
 		"{}/ANI_done".format(scripts)
 	run:
 		os.chdir("{}/".format(scripts)),
-		os.system("{}/ANI.py >> output.log".format(scripts)),
+		os.system("{}/ANI.py".format(scripts)),
 		os.system("{}/ANI_formatting.py".format(scripts)),
 		os.system("touch {}/ANI_done".format(scripts))
 
