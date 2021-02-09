@@ -83,11 +83,10 @@ for dire in os.listdir(scripts):
 if database_present == False:
 	os.chdir(scripts+"/database_fastas")
 	good_genus = False
-	test_try = 0
 	download_error = False
 	
 	#tree attempts to get the spelling correct
-	while good_genus == False or test_try < 3:
+	while good_genus == False:
 		print("Downloading database for you. This might take some time.")
 		if typestrain == True:
 			print("Only downloading type strains.")
@@ -98,6 +97,7 @@ if database_present == False:
 				download_error = True
 				print(error)
 				break
+			good_genus = True
 		else:
 			command = "ncbi-genome-download -F 'fasta' -l 'complete' --genus " + str(genus) + " bacteria -p "+str(int(cores)*2)+" 2> /dev/null"
 			try:
@@ -106,6 +106,7 @@ if database_present == False:
 				download_error = True
 				print(error)
 				break
+			good_genus = True
 
 	if download_error == True: 
 		print("Something went wrong while downloading the database fasta files.\n Please try again later or with another genus.")
