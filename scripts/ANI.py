@@ -37,6 +37,9 @@ try:
 except Exception as error:
 	print(error)
 if not "ANI_output.matrix" in os.listdir():
+	print("##############################################################")
+	print("ERROR MESSAGE: A correct ANI heat map was not produced. \n Possible reason: Identity < 80%")
+	print("##############################################################")
 	nul_matrix =[str(count)]
 	count = -1
 	with open("query_list.txt","r") as query_list:
