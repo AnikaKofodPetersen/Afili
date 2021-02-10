@@ -33,7 +33,7 @@ with open("query_list.txt","a") as query_list:
 #Perform an ANI analysis
 print("Performing an ANI analysis (average nucleotide identity). This might take a while.")
 try:
-	os.system("fastANI --ql query_list.txt --rl query_list.txt --matrix -o ANI_output  > /dev/null 2>&1")
+	os.system("fastANI --ql query_list.txt --rl query_list.txt --matrix -o ANI_output --fragLen 1500 --minFraction 0.1 > /dev/null 2>&1")
 except Exception as error:
 	print(error)
 if not "ANI_output.matrix" in os.listdir():
