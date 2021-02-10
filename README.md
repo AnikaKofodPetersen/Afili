@@ -70,7 +70,7 @@ The user can make a custom database by using the add_db.py script. This can be d
 
 [-H --help  Show this help menu]
 
-[-F --fasta The path to your fasta or fasta.gz files]
+[-F --fasta The path to the folder with your fasta or fasta.gz files]
 
 [-DB --database The path to the Afili db folder]
 
