@@ -23,7 +23,7 @@ $ conda activate afili_env
 
 $ prokka --setupdb
 
-$ parallel -will-cite
+$ parallel --will-cite
 
 Lastly, run a test with the available test file as follows:
 
