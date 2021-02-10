@@ -41,13 +41,27 @@ elif num_arg < 3:
 	sys.exit(1)
 
 
-#Collecting both individual fastas and all fastas in one file
-try:
-	os.system("cat " + fasta_folder + "/*.fna.gz >> " + str(genus) + "_DNA_cds.fna.gz")
-	os.system("gunzip " + fasta_folder + "/*.gz")
-except:
-	for extension in ["fna","fasta","fas","fsa"]:
-		os.system("cat " + fasta_folder + "/*."+exstension+" >> " + str(genus) + "_DNA_cds.fna")
+#Get the extension
+gz_ext = False
+for extension in os.listdir(fasta_folder):
+	if extension.endswith("gz"):
+		gz_ext = True
+	else:
+		extent = extension.split(sep=".")[-1]
+		
+
+#Collecting both individual fastas and all fastas in one filegz_ext = True
+if gz_ext == True:
+	try:
+		os.system("cat " + fasta_folder + "/*.fna.gz >> " + str(genus) + "_DNA_cds.fna.gz")
+		os.system("gunzip " + fasta_folder + "/*.gz")
+	except Exception as error:
+		print(error)
+else:
+	try:
+		os.system("cat " + fasta_folder + "/*." + extent + " >> " + fasta_folder + "/" + str(genus) + "_DNA_cds.fna")
+	except Exception as error:
+		print(error)
 
 #Prepare the database files
 os.chdir(fasta_folder)
