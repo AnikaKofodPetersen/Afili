@@ -3,8 +3,6 @@
 #import necessary packages
 import os
 import sys
-import subprocess
-import re
 
 #Get paths
 curdir = str(os.getcwd())
