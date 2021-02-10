@@ -16,7 +16,7 @@ for argument in range(0,len(arguments)):
 	if arguments[argument].startswith("-H") or arguments[argument].startswith("--help"):
 		print("This helper-script will let you make a custom database\n")
 		print("[-H --help\tShow this help menu]\n")
-		print("[-F --fasta\tThe path to your fasta or fasta.gz files]\n")
+		print("[-F --fasta\tThe path to the folder with your fasta or fasta.gz files]\n")
 		print("[-DB --database\tThe path to the Afili db folder]\n")
 		print("[-N --name\tThe name of your custom database]\n")
 		sys.exit(1)
