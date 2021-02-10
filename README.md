@@ -66,7 +66,15 @@ In the folder RESULTS are the following output files:
 
 
 #### MANUAL DATABASE ALTERATIONS
-The user can delete and add genomes in the databases by deleting or adding database files in the db/folders
+The user can make a custom database by using the add_db.py script. This can be done by running the script and specify the path to the fasta files, the path to the Afili/db folder and the name of the database.
+
+[-H --help  Show this help menu]
+
+[-F --fasta The path to your fasta or fasta.gz files]
+
+[-DB --database The path to the Afili db folder]
+
+[-N --name  The name of your custom database]
 
 
 ### SPECIFICATIONS
