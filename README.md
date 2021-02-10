@@ -2,7 +2,32 @@
 The following is a bioinformatic workflow designed to find related phages and phage remnants. 
 The workflow is not restricted to phages by any phage database.
 
-##### Notice: Afili will create a new conda environment during setup. You must have conda installed before using Afili.
+##### Notice: Installing with conda environment is the preferred method of using Afili. You must have conda installed before using Afili.
+#### Dependencies:
+any2fasta
+biopython
+Conda
+blast-legacy
+fastANI
+fasttree
+hmmer
+mummer
+mlst
+ncbi-genome-download
+newick_utils
+prokka
+parallel
+perl
+pip
+Python 3.7 or higher
+r-base
+r-pheatmap
+readline
+roary
+samtools
+snakemake
+tbl2asn
+
 
 ### INSTALLATION
 First, clone the repository:
@@ -65,18 +90,6 @@ In the folder RESULTS are the following output files:
 * my_tree_collected_analysis_rerooted.nw: 	A phylogenetic tree in newick format of all phage-like elements and original phage(s).
 
 
-#### MANUAL DATABASE ALTERATIONS
-The user can make a custom database by using the add_db.py script. This can be done by running the script and specify the path to the fasta files, the path to the Afili/db folder and the name of the database.
-
-[-H --help  Show this help menu]
-
-[-F --fasta The path to the folder with your fasta or fasta.gz files]
-
-[-DB --database The path to the Afili db folder]
-
-[-N --name  The name of your custom database]
-
-
 ### SPECIFICATIONS
 [-h --help Help menu]
 
@@ -105,4 +118,16 @@ Possible inputs
 [--genes (float) Minimal amount of the orignial genes that should be present in a putative phage]
 
 [--gap (float) Minimal percent of unknown genes in a phage that in a continous stretch would indicate a gap]
+
+
+#### MANUAL DATABASE ALTERATIONS
+The user can make a custom database by using the add_db.py script. This can be done by running the script and specify the path to the fasta files, the path to the Afili/db folder and the name of the database.
+
+[-H --help  Show this help menu]
+
+[-F --fasta The path to the folder with your fasta or fasta.gz files]
+
+[-DB --database The path to the Afili db folder]
+
+[-N --name  The name of your custom database]
 
