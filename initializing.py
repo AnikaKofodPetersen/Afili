@@ -85,7 +85,7 @@ if database_present == False:
 	good_genus = False
 	download_error = False
 	
-	#tree attempts to get the spelling correct
+	#Download database 
 	while good_genus == False:
 		print("Downloading database for you. This might take some time.")
 		if typestrain == True:
