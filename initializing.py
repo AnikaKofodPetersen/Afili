@@ -84,6 +84,7 @@ if database_present == False:
 	os.chdir(scripts+"/database_fastas")
 	good_genus = False
 	download_error = False
+	missing = False
 	
 	#Download database 
 	while good_genus == False:
@@ -94,24 +95,47 @@ if database_present == False:
 			try:
 				output = subprocess.check_output(command, shell=True)
 			except Exception as error:
-				download_error = True
+				with open("errors.txt","r") as er_file:
+					for line in er_file:
+						if "MissingSchema" in line:
+							missing = True
+				if missing == False:
+					download_error = True
 				print(error)
 				break
 			good_genus = True
 		else:
-			command = "ncbi-genome-download -F 'fasta' -l 'complete' --genus " + str(genus) + " bacteria -p "+str(int(cores)*2)+" -r 1 2> /dev/null"
+			command = "ncbi-genome-download -F 'fasta' -l 'complete' --genus " + str(genus) + " bacteria -p "+str(int(cores)*2)+" -r 1 2> errors.txt"
 			try:
 				output = subprocess.check_output(command, shell=True)
 			except Exception as error:
-				download_error = True
+				with open("errors.txt","r") as er_file:
+					for line in er_file:
+						if "MissingSchema" in line:
+							missing = True
+				if missing == False:
+					download_error = True
 				print(error)
 				break
 			good_genus = True
+			
+	if missing == True:
+		fna_count = 0
+		for folder in os.listdir("refseq/bacteria/"):
+			for fna in os.listdir("refseq/bacteria/"+folder):
+				if fna.endswith("fna.gz"):
+					fna_count += 1
+		print("The amount of properly downloaded fasta files is: " + str(fna_count))
+	
+		if fna_count > 1:
+			print("Will work with the proper downloaded files")
+		else:	
+			print("Not enough to build a proper database. Shutting down.")
+			sys.exit(1)
 
-	if download_error == True: 
+	elif download_error == True: 
 		print("Something went wrong while downloading the database fasta files.\n Please try again later or with another genus.")
 		sys.exit(1)
-
 		
 	#Collecting both individual fastas and all fastas in one file
 	os.system("cat refseq/bacteria/**/*.fna.gz >> " + str(genus) + "_DNA_cds.fna.gz")
