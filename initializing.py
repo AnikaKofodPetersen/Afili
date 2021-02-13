@@ -145,14 +145,14 @@ if database_present == False:
 	for fasta in os.listdir():
 		if typestrain == False:
 			if fasta.endswith("fna"):
-				command = "makeblastdb -in " + fasta + " -dbtype nucl -parse_seqids -out ../db/"+str(genus)+"/"+ fasta+"_DNA_DB 2> /dev/null"
+				command = "makeblastdb -in " + fasta + " -dbtype nucl -parse_seqids -out ../db/"+str(genus)+"/"+ fasta+"_DNA_DB 2>&1 /dev/null"
 				os.system(command)
 				with open("../db/"+str(genus)+"/database_names.txt",'a') as names:		#Make list with all individual database names
 					if fasta != str(genus) + "_DNA_cds.fna":
 						names.write(fasta + "_DNA_DB\n")
 		else:
 			if fasta.endswith("fna"):
-				command = "makeblastdb -in " + fasta + " -dbtype nucl -parse_seqids -out ../db/"+str(genus)+"T/"+ fasta+"_DNA_DB 2> /dev/null"
+				command = "makeblastdb -in " + fasta + " -dbtype nucl -parse_seqids -out ../db/"+str(genus)+"T/"+ fasta+"_DNA_DB 2>&1 /dev/null"
 				os.system(command)
 				with open("../db/"+str(genus)+"T/database_names.txt",'a') as names:		#Make list with all individual database names
 					if fasta != str(genus) + "_DNA_cds.fna":
