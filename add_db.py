@@ -1,5 +1,3 @@
-#!/usr/bin/env python3
-
 #import necessary packages
 import os
 import sys
