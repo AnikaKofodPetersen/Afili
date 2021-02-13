@@ -1,4 +1,3 @@
-#!/usr/bin/env python3 
 fasta_folder = "/mnt/c/Users/anika/desktop/Afili/test_fasta"
 scripts = "/mnt/c/Users/anika/desktop/Afili"
 
