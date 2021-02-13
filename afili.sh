@@ -33,12 +33,12 @@ if [[ $add == *"-h"* ]] || [[ $add == *"--help"* ]]; then
 	exit 1
 fi
 
-$afili_path/initializing.py $add $cores
+python $afili_path/initializing.py $add $cores
 #Check for errors
 errors=$?
 if [ $errors -ne 0 ]; then
 	./cleanup.sh
-    ./restart.py
+    python restart.py
 	exit 1
 fi
 #Running the actual data analysis
@@ -46,4 +46,4 @@ snakemake -s $afili_path/snakefile_run.py --cores $cores
 #Running clean up
 cd $afili_path
 ./cleanup.sh
-./restart.py
+python restart.py
