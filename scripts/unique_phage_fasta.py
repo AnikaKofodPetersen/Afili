@@ -1,5 +1,3 @@
-#!/usr/bin/env python3
-
 #import packages and change directory
 import os
 import re
