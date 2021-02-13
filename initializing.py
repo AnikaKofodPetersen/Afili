@@ -89,7 +89,7 @@ if database_present == False:
 		print("Downloading database for you. This might take some time.")
 		if typestrain == True:
 			print("Only downloading type strains.")
-			command = "ncbi-genome-download -F 'fasta' -l 'complete' -M  'type' --genus " + str(genus) + " bacteria -p "+str(int(cores)*2)+" -r 1 2> /dev/null"
+			command = "ncbi-genome-download -F 'fasta' -l 'complete' -M  'type' --genus " + str(genus) + " bacteria -p "+str(int(cores)*2)+" -r 1 2> errors.txt"
 			try:
 				output = subprocess.check_output(command, shell=True)
 			except Exception as error:
