@@ -1,5 +1,3 @@
-#!/usr/bin/env python3
-
 #import packages and move fasta files
 import os
 import sys
