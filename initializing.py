@@ -165,7 +165,7 @@ if database_present == False:
 #Run add-ons 
 if "-a" in sys.argv[1:]:
 	with open(scripts+"/scripts/attachment.txt",'w') as attachment:
-		attachment.write("#!/usr/bin/env python3 \nadd_on = True\n#import packages and setting working directory\nimport os\nfasta_folder = \"{}\"\n\n\nscripts = \"{}/scripts\"\n".format(fasta_folder,scripts))
+		attachment.write("\nadd_on = True\n#import packages and setting working directory\nimport os\nfasta_folder = \"{}\"\n\n\nscripts = \"{}/scripts\"\n".format(fasta_folder,scripts))
 	command = "cat {}/scripts/attachment.txt {}/snakefile.py >> {}/snakefile_run.py".format(scripts, scripts, scripts)
 	os.system(command)
 	os.system("chmod a+x {}/snakefile.py".format(scripts))
@@ -173,7 +173,7 @@ if "-a" in sys.argv[1:]:
 	os.system(command)
 else:
 	with open(scripts+"/scripts/attachment.txt",'w') as attachment:
-		attachment.write("#!/usr/bin/env python3 \nadd_on = False\n#import packages and setting working directory\nimport os\nfasta_folder = \"{}\"\n\nscripts = \"{}/scripts\"\n".format(fasta_folder,scripts))
+		attachment.write("\nadd_on = False\n#import packages and setting working directory\nimport os\nfasta_folder = \"{}\"\n\nscripts = \"{}/scripts\"\n".format(fasta_folder,scripts))
 	command = "cat {}/scripts/attachment.txt {}/snakefile.py >> {}/snakefile_run.py".format(scripts,scripts,scripts)
 	os.system(command)
 	os.system("chmod a+x {}/snakefile.py".format(scripts))
@@ -195,14 +195,14 @@ os.system(command)
 
 os.system("chmod a+x {}/scripts/blast_pre.py".format(scripts))
 with open(scripts+"/scripts/attachment.txt",'w') as attachment:
-	attachment.write("#!/usr/bin/env python3 \ngenus = \"" + str(genus) + "\"\ndatabase_name=\"" + str(genus) + "_DNA_cds.fna_DNA_DB\" \n")
+	attachment.write("\ngenus = \"" + str(genus) + "\"\ndatabase_name=\"" + str(genus) + "_DNA_cds.fna_DNA_DB\" \n")
 command = "cat {}/scripts/attachment.txt {}/scripts/script4.0.py >> {}/scripts/collection_host.py".format(scripts,scripts,scripts)
 os.system(command)
 os.system("chmod a+x {}/scripts/collection_host.py".format(scripts))
 
 #Prepare restart script  
 with open(scripts+"/restart_prep.txt","w") as restart_prep:
-	restart_prep.write("#!/usr/bin/env python3 \nfasta_folder = \"{}\"\nscripts = \"{}\"\n".format(fasta_folder, scripts))
+	restart_prep.write("\nfasta_folder = \"{}\"\nscripts = \"{}\"\n".format(fasta_folder, scripts))
 command = "cat {}/restart_prep.txt {}/restart_end.py > {}/restart.py".format(scripts,scripts,scripts)
 os.system(command)
 
@@ -284,7 +284,7 @@ if float(gap_thres_set) > 50:
 	
 #Write an attachment and attach to script	
 with open(scripts+"/scripts/attachment.txt",'w') as attachment:
-	attachment.write("#!/usr/bin/env python3 \nidentity = "+str(identity)+"\ncoverage = "+str(coverage)+"\nmax_thres_set = "+str(max_thres_set)+"\nmin_thres_set = "+str(min_thres_set)+"\nmin_genes_set = "+str(min_genes_set)+"\ngap_thres_set = "+str(gap_thres_set))
+	attachment.write("\nidentity = "+str(identity)+"\ncoverage = "+str(coverage)+"\nmax_thres_set = "+str(max_thres_set)+"\nmin_thres_set = "+str(min_thres_set)+"\nmin_genes_set = "+str(min_genes_set)+"\ngap_thres_set = "+str(gap_thres_set))
 
 command = "cat {}/scripts/attachment.txt {}/scripts/blast_pre.py >> {}/scripts/blast.py".format(scripts,scripts,scripts)
 os.system(command)
