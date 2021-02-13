@@ -21,7 +21,7 @@ rule PROKKA_original_ppBGCs:
 		"{}/prokka_prophage_done".format(scripts)
 	run:
 		os.chdir("{}/".format(scripts)),
-		os.system("{}/prokka_prophage.py >> output.log".format(scripts)),
+		os.system("python {}/prokka_prophage.py >> output.log".format(scripts)),
 		os.system("mkdir {}/blast_folder".format(scripts)),
 		os.system("mv {}/**/*.ffn blast_folder".format(scripts)),
 		os.system("touch {}/prokka_prophage_done".format(scripts))
@@ -37,7 +37,7 @@ rule BLAST_ppBGCs_against_database:
 		"{}/blast_done".format(scripts)
 	run:
 		os.chdir("{}/".format(scripts)),
-		os.system("{}/blast.py >> output.log".format(scripts))
+		os.system("python {}/blast.py >> output.log".format(scripts))
 	
 
 #Parsing the results from the BLAST search with script3
@@ -48,7 +48,7 @@ rule Filter_results_from_BLAST:
 		"{}/filtering_done".format(scripts)
 	run:
 		os.chdir("{}/".format(scripts)),
-		os.system("{}/filter.py ".format(scripts))
+		os.system("python {}/filter.py ".format(scripts))
 
 
 #Collecting fasta files for bacterial prophage hosts with script4
@@ -59,7 +59,7 @@ rule collecting_host_fastas:
 		"{}/collection_host_done".format(scripts)
 	run: 
 		os.chdir("{}/".format(scripts)),
-		os.system("{}/collection_host.py >> output.log".format(scripts))
+		os.system("python {}/collection_host.py >> output.log".format(scripts))
 
 #Making a list of phages at unique positions in all hosts using script6
 rule list_of_phages_w_unique_host_or_position:
@@ -69,7 +69,7 @@ rule list_of_phages_w_unique_host_or_position:
 		"{}/unique_lines_done".format(scripts)
 	run:
 		os.chdir("{}/".format(scripts)),
-		os.system("{}/unique_phage.py >> output.log".format(scripts))
+		os.system("python {}/unique_phage.py >> output.log".format(scripts))
 
 #Actually collecting phage fastas with script7
 rule collect_phage_fastas_from_phage_list:
@@ -79,7 +79,7 @@ rule collect_phage_fastas_from_phage_list:
 		"{}/collected_phages_done".format(scripts)
 	run:
 		os.chdir("{}/".format(scripts)),
-		os.system("{}/unique_phage_fasta.py >> output.log ".format(scripts))
+		os.system("python {}/unique_phage_fasta.py >> output.log ".format(scripts))
 
 
 #Performing an add_on analysis on the collected phages
@@ -107,7 +107,7 @@ rule Prokka_all_phages_from_list:
 		"{}/Prokka_collected_done".format(scripts)
 	run:
 		os.chdir("{}/".format(scripts)),
-		os.system("{}/prokka_putative_phage.py >> output.log".format(scripts))
+		os.system("python {}/prokka_putative_phage.py >> output.log".format(scripts))
 
 #Copy the gff files from the gene prediction of the collected phages and perform a roary 
 # core gene alignment with decreasing %-identity threshold with script14
@@ -120,7 +120,7 @@ rule roary_fasttree_on_all_phages:
 		"{}/collected_analysis_done".format(scripts)
 	run:
 		os.chdir("{}/".format(scripts)),
-		os.system("{}/collected_analysis.py >> output.log".format(scripts))
+		os.system("python {}/collected_analysis.py >> output.log".format(scripts))
 	
 #Perform an MLST analysis on the hosts
 rule MLST_check_hosts:
@@ -143,7 +143,7 @@ rule display_phylogeny:
 		"{}/phylogeny_display_done".format(scripts)
 	run:
 		os.chdir("{}/".format(scripts)),
-		os.system("{}/phylogeny_display.py >> output.log".format(scripts))
+		os.system("python {}/phylogeny_display.py >> output.log".format(scripts))
 	
 #Perform an average nucleotide identity analysis with FastANI
 rule ANI:
@@ -154,8 +154,8 @@ rule ANI:
 		"{}/ANI_done".format(scripts)
 	run:
 		os.chdir("{}/".format(scripts)),
-		os.system("{}/ANI.py".format(scripts)),
-		os.system("{}/ANI_formatting.py".format(scripts)),
+		os.system("python {}/ANI.py".format(scripts)),
+		os.system("python {}/ANI_formatting.py".format(scripts)),
 		os.system("touch {}/ANI_done".format(scripts))
 
 
