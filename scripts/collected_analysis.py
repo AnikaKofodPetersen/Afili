@@ -1,5 +1,3 @@
-#!/usr/bin/env python3
-
 #import packages
 import os
 import io 
