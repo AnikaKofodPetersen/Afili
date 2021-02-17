@@ -14,7 +14,7 @@ threshold = 95
 
 
 while previous_threshold != threshold:
-	command = "roary -cd 95 -i " + str(threshold) + " -e --mafft *.gff > /dev/null 2>&1"		#Perform core alignments with 95% gene precense but a decreasing % identity threshold
+	command = "roary -cd 95 -i " + str(threshold) + " -p 4 -e --mafft *.gff > /dev/null 2>&1"		#Perform core alignments with 95% gene precense but a decreasing % identity threshold
 	os.system(command)
 	with open("summary_statistics.txt", 'r') as summary:
 		cores = int(summary.readline().split()[-1])
