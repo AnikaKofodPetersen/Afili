@@ -149,7 +149,10 @@ rule display_phylogeny:
 rule ANI:
 	input:
 		"{}/phylogeny_display_done".format(scripts),
-		"{}/add_on_done".format(scripts)
+		"{}/add_on_done".format(scripts),
+		"{}/mlst_done".format(scripts),
+		"{}/collected_phages_done".format(scripts),
+		"{}/Prokka_collected_done".format(scripts)
 	output:
 		"{}/ANI_done".format(scripts)
 	run:
