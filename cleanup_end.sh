@@ -37,9 +37,10 @@ rm phylogeny_display.py > /dev/null 2>&1
 
                                                                       
 #Move originals and results back to starting position
-mv *.fna $output_folder > /dev/null 2>&1
-mv output.log ${output_folder:1}/ > /dev/null 2>&1
-mv collected_phages/*.fna ${output_folder:1} > /dev/null 2>&1
+mkdir $output_folder/RESULTS_fastas
+mv *.fna $output_folder/RESULTS_fastas
+mv output.log ${output_folder:1}/
+mv collected_phages/*.fna ${output_folder:1}/RESULTS_fastas
 for fasta in *.fna; do mv "$fasta" "${fasta:8}"; done
 rm -r collected_phages > /dev/null 2>&1
 
