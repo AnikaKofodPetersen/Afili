@@ -167,7 +167,7 @@ rule Heatmaps:
 		"{}/heatmaps_done".format(scripts)
 	run:
 		os.chdir("{}/".format(scripts)),
-		os.system("{}/RHeatmaps.sh > /dev/null 2>&1".format(scripts)),
+		os.system("{}/RHeatmaps.sh".format(scripts)),
 
 #Collect all results in a result folder
 #GET R HEAT MAPS
