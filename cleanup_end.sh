@@ -26,10 +26,6 @@ mv collected_phages/*.fna ${fasta_folder:1} > /dev/null 2>&1
 for fasta in *.fna; do mv "$fasta" "${fasta:8}"; done
 rm -r collected_phages > /dev/null 2>&1
 
-#Collect fastas in output folder
-mkdir -p $output_folder/FASTAS
-mv $fasta_folder/*.fna $output_folder/FASTAS
-
 
 #remove preliminary scripts 
 rm blast.py > /dev/null 2>&1
