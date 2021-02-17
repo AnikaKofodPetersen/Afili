@@ -201,4 +201,5 @@ rule collect_all_results:
 		os.system("mv {}/phage_completeness.txt {}/RESULTS".format(scripts,scripts))
 		os.system("mv {}/RESULTS {}".format(scripts, output_folder))
 		os.system("mv {}/collected_phages/*.fna {}".format(scripts, output_folder))
+		os.system("mv {}/output.log {}".format(scripts, output_folder))
 		os.system("touch {}/all_done".format(scripts))
