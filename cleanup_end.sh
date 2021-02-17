@@ -25,6 +25,9 @@ mv output.log ${fasta_folder:1}/ > /dev/null 2>&1
 mv collected_phages/*.fna ${fasta_folder:1} > /dev/null 2>&1
 for fasta in *.fna; do mv "$fasta" "${fasta:8}"; done
 rm -r collected_phages > /dev/null 2>&1
+mkdir -p $output_folder/RESULTS_FASTAS
+mv $fasta_folder/*.fna $output_folder/RESULTS_FASTAS
+mv *.fna $fasta_folder > /dev/null 2>&1
 
 
 #remove preliminary scripts 
