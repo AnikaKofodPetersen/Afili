@@ -3,7 +3,7 @@ scripts = "/mnt/c/Users/anika/desktop/Afili"
 
 import os
 #Restarting for a new analysis
-os.system("mv {}/scripts/*.fna {}/RESULT_fastas > /dev/null 2>&1".format(scripts,fasta_folder))
+os.system("mv {}/scripts/*.fna {}/RESULT_fastas/ > /dev/null 2>&1".format(scripts,fasta_folder))
 os.system("mv RESULTS {} > /dev/null 2>&1 ".format(fasta_folder))
 
 
