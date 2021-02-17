@@ -25,6 +25,10 @@ for argument in range(0,len(arguments)):
 	#Fasta files(s)
 	if arguments[argument].startswith("-F") or arguments[argument].startswith("--fasta"):
 		fasta_folder = curdir +"/"+arguments[argument+1]
+		output_folder = fasta_folder
+	#Output directory
+	if arguments[argument].startswith("-O") or arguments[argument].startswith("--output"):
+		output_folder = curdir +"/"+arguments[argument+1]
 	#Type strain parameter
 	if arguments[argument].startswith("-T") or arguments[argument].startswith("--type"):
 		typestrain = True
@@ -202,7 +206,7 @@ os.system("chmod a+x {}/scripts/collection_host.py".format(scripts))
 
 #Prepare restart script  
 with open(scripts+"/restart_prep.txt","w") as restart_prep:
-	restart_prep.write("\nfasta_folder = \"{}\"\nscripts = \"{}\"\n".format(fasta_folder, scripts))
+	restart_prep.write("\noutput_folder = \"{}\"\nscripts = \"{}\"\n".format(output_folder, scripts))
 command = "cat {}/restart_prep.txt {}/restart_end.py > {}/restart.py".format(scripts,scripts,scripts)
 os.system(command)
 
