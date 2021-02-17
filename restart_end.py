@@ -5,8 +5,8 @@ os.system("mv {}/scripts/*.fna {}".format(scripts,fasta_folder))
 os.system("mv RESULTS {} > /dev/null 2>&1 ".format(output_folder))
 
 #Collect to output folder
-os.system("mkdir {}/RESULTS_FASTA".format(output_folder))
-os.system("mv {}/*.fna {}/RESULTS_FASTA".format(fasta_folder, output_folder))
+os.system("mkdir {}/RESULTS_FASTA > /dev/null 2>&1".format(output_folder))
+os.system("mv {}/*.fna {}/RESULTS_FASTA > /dev/null 2>&1".format(fasta_folder, output_folder))
 
 
 #deleting uneccessary files
