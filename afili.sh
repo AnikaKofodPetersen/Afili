@@ -21,6 +21,7 @@ if [[ $add == *"-h"* ]] || [[ $add == *"--help"* ]]; then
 	echo "[-G --genus Genus of investigation]"
 	echo "[-F --fasta Folder containing a minimal of 1 fasta file for analysis]"
 	echo "Possible inputs"
+	echo "[-O --output Directory for output files]"
 	echo "[-T --type only uses the typestrains of the specified genus]"
 	echo "[-a run add-ons in the pipeline (Not yet available)]"
 	echo "[-i --identity (float) Percent identity threshold used in BLAST]"
