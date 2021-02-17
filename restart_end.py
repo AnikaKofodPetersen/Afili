@@ -1,8 +1,8 @@
 
 import os
 #Restarting for a new analysis
-os.system("mv {}/scripts/*.fna {}/RESULT_fastas/.".format(scripts,fasta_folder))
-os.system("mv RESULTS {} > /dev/null 2>&1 ".format(fasta_folder))
+os.system("mv {}/scripts/*.fna {}/RESULT_fastas/.".format(scripts,output_folder))
+os.system("mv RESULTS {} > /dev/null 2>&1 ".format(output_folder))
 
 
 #deleting uneccessary files
