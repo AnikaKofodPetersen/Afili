@@ -124,6 +124,8 @@ Necesarry input
 
 Possible inputs
 
+[-O --output Directory for output files]
+
 [-T --type Only uses the typestrains of the specified genus]
 
 [-a Run add-on in the pipeline (Not yet available)]
