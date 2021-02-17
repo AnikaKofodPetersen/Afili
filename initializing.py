@@ -206,14 +206,14 @@ os.system("chmod a+x {}/scripts/collection_host.py".format(scripts))
 
 #Prepare restart script  
 with open(scripts+"/restart_prep.txt","w") as restart_prep:
-	restart_prep.write("\noutput_folder = \"{}\"\nscripts = \"{}\"\n".format(output_folder, scripts))
+	restart_prep.write("\nfasta_folder = \"{}\"\nscripts = \"{}\"\n".format(fasta_folder, scripts))
 command = "cat {}/restart_prep.txt {}/restart_end.py > {}/restart.py".format(scripts,scripts,scripts)
 os.system(command)
 
 
 #Prepare cleanup script
 with open(scripts+"/cleanup_prep.txt","w") as cleanup_prep:
-	cleanup_prep.write("#!/bin/bash\nfasta_folder=\"${}\"\nscripts=\"${}\"\n".format(fasta_folder, scripts))
+	cleanup_prep.write("#!/bin/bash\nfasta_folder=\"${}\"\noutput_folder=\"${}\"\nscripts=\"${}\"\n".format(fasta_folder,output_folder,scripts))
 command = "cat {}/cleanup_prep.txt {}/cleanup_end.sh > {}/cleanup.sh".format(scripts,scripts,scripts)
 os.system(command)
 
