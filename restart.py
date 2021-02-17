@@ -1,10 +1,10 @@
-fasta_folder = "/mnt/c/Users/anika/desktop/Afili/test_fasta"
+output_folder = "/mnt/c/Users/anika/desktop/Afili/test_fasta"
 scripts = "/mnt/c/Users/anika/desktop/Afili"
 
 import os
 #Restarting for a new analysis
-os.system("mv {}/scripts/*.fna {}/RESULT_fastas/. > /dev/null 2>&1".format(scripts,fasta_folder))
-os.system("mv RESULTS {} > /dev/null 2>&1 ".format(fasta_folder))
+os.system("mv {}/scripts/*.fna {}/RESULT_fastas/. > /dev/null 2>&1".format(scripts,output_folder))
+os.system("mv RESULTS {} > /dev/null 2>&1 ".format(output_folder))
 
 
 #deleting uneccessary files
