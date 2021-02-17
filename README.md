@@ -75,7 +75,7 @@ $ parallel --will-cite
 
 Lastly, run a test with the available test file as follows:
 
-$ ./afili.sh -F test_fasta --genus bacillus -O test_fasta/test_output
+$ ./afili.sh -F test_fasta --genus bacillus -O test_output
 
 This might take a while, including the one-time database download.
 The results are found in the RESULTS folder placed in the test_fasta folder.
