@@ -206,7 +206,7 @@ os.system("chmod a+x {}/scripts/collection_host.py".format(scripts))
 
 #Prepare restart script  
 with open(scripts+"/restart_prep.txt","w") as restart_prep:
-	restart_prep.write("\nfasta_folder = \"{}\"\nscripts = \"{}\"\n".format(fasta_folder, scripts))
+	restart_prep.write("\nfasta_folder = \"{}\"\noutput_folder = \"{}\"\nscripts = \"{}\"\n".format(fasta_folder,output_folder,scripts))
 command = "cat {}/restart_prep.txt {}/restart_end.py > {}/restart.py".format(scripts,scripts,scripts)
 os.system(command)
 
