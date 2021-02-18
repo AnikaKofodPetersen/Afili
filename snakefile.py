@@ -192,11 +192,11 @@ rule collect_all_results:
 		os.system("mv {}/collected_phages/collected_analysis/Errors.txt {}/RESULTS > /dev/null 2>&1".format(scripts,scripts))
 		if "ANI.pdf" in os.listdir(scripts):
 			os.system("mv {}/ANI.pdf {}/RESULTS".format(scripts,scripts))
-			os.system("mv {}/ANI_matrix.txt {}/RESULTS".format(scripts,scripts))
 		else:
 			print("##############################################################")
-			print("ERROR MESSAGE: No ANI heat map was produced. \n Possible reason: Identity < 80%")
+			print("ERROR MESSAGE: No ANI.pdf heat map was produced. \n Possible reason: Amount of hits was too small.\nFor ANI matrix see ANI_matrix.txt%")
 			print("##############################################################")
+		os.system("mv {}/ANI_matrix.txt {}/RESULTS".format(scripts,scripts))
 		os.system("mv {}/phage_coordinates.txt {}/RESULTS".format(scripts,scripts))
 		os.system("mv {}/phage_completeness.txt {}/RESULTS".format(scripts,scripts))
 		os.system("mkdir -p {}/RESULTS_FASTA".format(output_folder))
