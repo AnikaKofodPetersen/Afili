@@ -29,7 +29,16 @@ for argument in range(0,len(arguments)):
 	#Output directory
 	if arguments[argument].startswith("-O") or arguments[argument].startswith("--output"):
 		output_folder = curdir +"/"+arguments[argument+1]
-		os.system("mkdir -p {}".format(output_folder))
+		if path.exists(output_folder):
+			dir = os.listdir(output_folder)
+			if "RESULTS" or "RESULTS_FASTA" or "output.log" in dir:
+				print("This output folder already contains data from a previous run. Please choose another output folder")
+				sys.exit(1)
+			else:
+				pass
+		else:
+			os.system("mkdir -p {}".format(output_folder))
+			
 	#Type strain parameter
 	if arguments[argument].startswith("-T") or arguments[argument].startswith("--type"):
 		typestrain = True
