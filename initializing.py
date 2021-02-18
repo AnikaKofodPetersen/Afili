@@ -79,7 +79,7 @@ for dire in os.listdir(scripts):
 				if database.startswith(genus + "T"):
 					database_present = True
 			else:
-				if database.startswith(genus):
+				if database.startswith(genus) and not database.startswith(genus + "T"):
 					database_present = True
 				
 #If database not present, download it
