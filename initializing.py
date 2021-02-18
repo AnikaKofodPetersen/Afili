@@ -141,7 +141,10 @@ if database_present == False:
 		sys.exit(1)
 		
 	#Collecting both individual fastas and all fastas in one file
-	os.system("cat refseq/bacteria/**/*.fna.gz >> " + str(genus) + "_DNA_cds.fna.gz")
+	if typestrain == True:
+		os.system("cat refseq/bacteria/**/*.fna.gz >> " + str(genus) + "T_DNA_cds.fna.gz")
+	else:
+		os.system("cat refseq/bacteria/**/*.fna.gz >> " + str(genus) + "_DNA_cds.fna.gz")
 	os.system("mv refseq/bacteria/**/*.fna.gz ./")
 	os.system("gunzip *.gz")
 	
