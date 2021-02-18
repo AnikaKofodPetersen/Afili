@@ -2,6 +2,11 @@
 
 #Remove done files
 cd ./scripts
+rm ANI_output.matrix > /dev/null 2>&1
+rm attachment.txt > /dev/null 2>&1
+rm host_mlst.txt > /dev/null 2>&1
+rm original_names.txt > /dev/null 2>&1
+rm ThresholdPhageLog.txt > /dev/null 2>&1
 rm all_done > /dev/null 2>&1
 rm prokka_prophage_done > /dev/null 2>&1
 rm blast_done > /dev/null 2>&1
