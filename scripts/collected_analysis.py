@@ -4,7 +4,7 @@ import io
 from contextlib import redirect_stdout 
 text_trap = io.StringIO()
 																				#Collect all .gff files
-os.mkdir("collected_analysis")
+os.mkdir("collected_analysis > /dev/null 2>&1")
 os.system("cp collected_phages/**/*.gff collected_analysis")
 os.chdir("collected_analysis")
 
