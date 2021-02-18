@@ -119,8 +119,13 @@ rule roary_fasttree_on_all_phages:
 	output:
 		"{}/collected_analysis_done".format(scripts)
 	run:
-		os.chdir("{}/".format(scripts)),
-		os.system("python {}/collected_analysis.py >> output.log".format(scripts))
+		for file_name in os.listdir(scripts):
+			if file_name == "skip_phylogeny":
+				os.system("rm {}/skip_phylogeny".format(scripts))
+				os.system("touch {}/collected_analysis_done".format(scripts))
+			else:
+				os.chdir("{}/".format(scripts)),
+				os.system("python {}/collected_analysis.py >> output.log".format(scripts))
 	
 #Perform an MLST analysis on the hosts
 rule MLST_check_hosts:
