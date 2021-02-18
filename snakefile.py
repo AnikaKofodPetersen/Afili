@@ -119,6 +119,7 @@ rule roary_fasttree_on_all_phages:
 	output:
 		"{}/collected_analysis_done".format(scripts)
 	run:
+		skip_phyl = False
 		for file_name in os.listdir(scripts):
 			if file_name == "skip_phylogeny":
 				skip_phyl = True
