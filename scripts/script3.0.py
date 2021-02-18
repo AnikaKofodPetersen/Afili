@@ -128,6 +128,8 @@ if len(predicted_phages) == 0:
 	print("Will not be able to produce the neccessary files. MissingFileError might occur.\n\n\n")
 	print("########################################################################\n\n\n")
 	os.system("touch ../all_done")
+	
+#Check for impossible phylogeny
 elif len(predicted_phages) == 1:
 	print("#########################################################################\n\n\n")
 	print("ONLY ONE MATCH FOUND\n\n\n")
@@ -135,6 +137,43 @@ elif len(predicted_phages) == 1:
 	print("Will not be able to produce a newick tree file.\n\n\n")
 	print("########################################################################\n\n\n")
 	os.system("touch ../skip_phylogeny")
+	
+	#Write outputfile with accepted phages			
+	with open("accepted_phages.txt",'a') as accepts:
+		for entry in predicted_phages:
+			total_before += 1
+			total_after += 1
+			accepts.write(entry + "\t")
+			accepts.write(str(predicted_phages[entry]["start"]) + "\t")
+			accepts.write(str(predicted_phages[entry]["end"]) + "\t")
+			accepts.write("\n")
+	#Make log file				
+	with open("../ThresholdPhageLog.txt",'a') as output:
+		output.write("Before filter total amount of phages: " + str(total_before) + "\n")
+		output.write("After filter total amount of phages: " + str(total_after) + "\n")
+		output.write("Caugth by gene filter: " + str(gene_filter) + "\n")
+		output.write("Caugth by max length filter: " + str(max_length_filter) + "\n")
+		output.write("Caugth by min filter: " + str(min_length_filter) + "\n")
+		output.write("Average length of originals: " + str(ave_length) + "\n")
+		output.write("Max length threshold: " + str(max_length) + "\n")
+		output.write("Min length threshold: " + str(min_length) + "\n")
+		
+	#Save phage coordinates and completeness
+	complete = open("../phage_completeness.txt","a")
+	with open("../phage_coordinates.txt","a") as coordinates:
+		coordinates.write("Phage_label\tcoordinates\n")
+		complete.write("Phage_label\tfullfillment of original genes\n")
+		for i in predicted_phages.items():
+			print(i[0]+"\t"+str(i[1]["start"])+"..."+str(i[1]["end"])+"\t"+str(i[1]["genes"])+"/"+str(i[1]["all_genes"]))
+			coordinates.write(i[0]+"\t"+str(i[1]["start"])+"..."+str(i[1]["end"])+"\n")
+			complete.write(i[0]+"\t"+str(i[1]["genes"])+"/"+str(i[1]["all_genes"])+"\n")
+	complete.close()
+				
+
+
+	#Make ending indicator
+	os.system("touch ../filtering_done")
+
 
 else:
 	
