@@ -195,7 +195,7 @@ rule collect_all_results:
 			pass
 		os.system("mv {}/newick_trees/originalsMetadata.txt {}/RESULTS".format(scripts,scripts))
 		os.system("mv {}/newick_trees/SpeciesMetadata.txt {}/RESULTS".format(scripts,scripts))
-		os.system("mv {}/newick_trees/my_tree_collected_analysis_rerooted.nw {}/RESULTS".format(scripts,scripts))
+		os.system("mv {}/newick_trees/my_tree_collected_analysis_rerooted.nw {}/RESULTS > /dev/null 2>&1".format(scripts,scripts))
 		os.system("mv {}/collected_phages/collected_analysis/Errors.txt {}/RESULTS > /dev/null 2>&1".format(scripts,scripts))
 		if "ANI.pdf" in os.listdir(scripts):
 			os.system("mv {}/ANI.pdf {}/RESULTS".format(scripts,scripts))
