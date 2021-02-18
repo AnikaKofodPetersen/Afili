@@ -128,6 +128,13 @@ if len(predicted_phages) == 0:
 	print("Will not be able to produce the neccessary files. MissingFileError might occur.\n\n\n")
 	print("########################################################################\n\n\n")
 	os.system("touch ../all_done")
+elif len(predicted_phages) == 1:
+	print("#########################################################################\n\n\n")
+	print("ONLY ONE MATCH FOUND\n\n\n")
+	print("With only one match, no phylogeny will be calculated.")
+	print("Will not be able to produce a newick tree file.\n\n\n")
+	print("########################################################################\n\n\n")
+	os.system("touch ../skip_phylogeny")
 
 else:
 	
