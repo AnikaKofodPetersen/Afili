@@ -29,6 +29,7 @@ for argument in range(0,len(arguments)):
 	#Output directory
 	if arguments[argument].startswith("-O") or arguments[argument].startswith("--output"):
 		output_folder = curdir +"/"+arguments[argument+1]
+		os.system("mkdir -p {}".format(output_folder))
 	#Type strain parameter
 	if arguments[argument].startswith("-T") or arguments[argument].startswith("--type"):
 		typestrain = True
