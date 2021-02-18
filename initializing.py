@@ -32,7 +32,9 @@ for argument in range(0,len(arguments)):
 		if os.path.isdir(output_folder):
 			dir = os.listdir(output_folder)
 			if "RESULTS" or "RESULTS_FASTA" or "output.log" in dir:
+				print("#################################################################################################")
 				print("This output folder already contains data from a previous run. Please choose another output folder")
+				print("#################################################################################################")
 				sys.exit(1)
 			else:
 				pass
