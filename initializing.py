@@ -174,7 +174,7 @@ if database_present == False:
 				command = "makeblastdb -in " + fasta + " -dbtype nucl -parse_seqids -out ../db/"+str(genus)+"T/"+ fasta+"_DNA_DB >/dev/null 2>&1"
 				os.system(command)
 				with open("../db/"+str(genus)+"T/database_names.txt",'a') as names:		#Make list with all individual database names
-					if fasta != str(genus) + "_DNA_cds.fna":
+					if fasta != str(genus) + "T_DNA_cds.fna":
 						names.write(fasta + "_DNA_DB\n")
 			
 			
