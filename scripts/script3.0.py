@@ -104,24 +104,26 @@ gene_filter = 0
 max_length_filter = 0
 min_length_filter = 0
 for entry in deep_copy:
+	total_before += 1
 	if float(deep_copy[entry]["genes"]) < float(gene_dict[deep_copy[entry]["number"]])*(float(min_genes_set)/100):
+		print(float(gene_dict[deep_copy[entry]["number"]])*(float(min_genes_set)/100))
 		del predicted_phages[entry]
-		total_before += 1
 		gene_filter += 1
 		#print("Phage deleted because of gene amount")
 	elif float(deep_copy[entry]["end"])-float(deep_copy[entry]["start"]) > max_length:
 		del predicted_phages[entry]
-		total_before += 1
 		max_length_filter += 1
 		#print("Phage deleted because of max length")
 	elif float(deep_copy[entry]["end"])-float(deep_copy[entry]["start"]) < min_length:
 		del predicted_phages[entry]
-		total_before += 1
 		min_length_filter += 1
 		#print("Phage deleted because of min length")
+total_after = total_before - gene_filter - max_length_filter - min_length_filter
 		
 print("TOTAL_BEFORE: {}  TOTAL_AFTER: {}   GENE_FILER: {}  MAX_LENGTH: {}   MIN_LENGTH: {}".format(total_before,total_after,gene_filter,max_length_filter,min_length_filter))
-
+print("Average length of originals: " + str(ave_length) + "\n")
+print("Max length threshold: " + str(max_length) + "\n")
+print("Min length threshold: " + str(min_length) + "\n")
 #Make a 0-error
 if len(predicted_phages) == 0:
 	print("#########################################################################\n\n\n")
