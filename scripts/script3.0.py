@@ -119,11 +119,11 @@ for entry in deep_copy:
 		#print("Phage deleted because of min length")
 total_after = total_before - gene_filter - max_length_filter - min_length_filter
 		
-print("TOTAL_BEFORE: {}  TOTAL_AFTER: {}   GENE_FILER: {}  MAX_LENGTH: {}   MIN_LENGTH: {}".format(total_before,total_after,gene_filter,max_length_filter,min_length_filter),file=../output.log)
-print("Average length of originals: " + str(ave_length) + "\n",file=../output.log)
-print("Minimum amount of genes: " + str(float(gene_dict[deep_copy[entry]["number"]])*(float(min_genes_set)/100)),file=../output.log)
-print("Max length threshold: " + str(max_length) + "\n",file=../output.log)
-print("Min length threshold: " + str(min_length) + "\n",file=../output.log)
+print("TOTAL_BEFORE: {}  TOTAL_AFTER: {}   GENE_FILER: {}  MAX_LENGTH: {}   MIN_LENGTH: {}".format(total_before,total_after,gene_filter,max_length_filter,min_length_filter))
+print("Average length of originals: " + str(ave_length) + "\n")
+print("Minimum amount of genes: " + str(float(gene_dict[deep_copy[entry]["number"]])*(float(min_genes_set)/100)))
+print("Max length threshold: " + str(max_length) + "\n")
+print("Min length threshold: " + str(min_length) + "\n")
 #Make a 0-error
 if len(predicted_phages) == 0:
 	print("#########################################################################\n\n\n")
