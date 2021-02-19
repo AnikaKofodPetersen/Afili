@@ -120,7 +120,7 @@ for entry in deep_copy:
 		min_length_filter += 1
 		#print("Phage deleted because of min length")
 		
-print("TOTAL_BEFORE: {}  TOTAL_AFTER: {}   GENE_FILER: {}  MAX_LENGTH: {}   MIN_LENGTH: {}".format(total_before,total_after,genefiler,max_length_filter,min_length_filter))
+print("TOTAL_BEFORE: {}  TOTAL_AFTER: {}   GENE_FILER: {}  MAX_LENGTH: {}   MIN_LENGTH: {}".format(total_before,total_after,gene_filter,max_length_filter,min_length_filter))
 
 #Make a 0-error
 if len(predicted_phages) == 0:
