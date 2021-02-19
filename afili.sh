@@ -46,5 +46,5 @@ fi
 snakemake -s $afili_path/snakefile_run.py --cores $cores
 #Running clean up
 cd $afili_path
-#./cleanup.sh
-#python restart.py
+./cleanup.sh
+python restart.py
