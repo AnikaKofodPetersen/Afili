@@ -17,7 +17,6 @@ if [[ $cores -ge 5 ]]; then
 	echo "Snakemake cannot run with more than 4 cores. Will run with 4 cores instead of $cores"
 	cores=4
 fi
-echo "Using $cores cores"
 fi
 #Check command line arguments and print help
 if [[ $add == *"-h"* ]] || [[ $add == *"--help"* ]]; then
