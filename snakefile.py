@@ -49,6 +49,9 @@ rule Filter_results_from_BLAST:
 	run:
 		os.chdir("{}/".format(scripts)),
 		os.system("python {}/filter.py ".format(scripts))
+		for errorfile in os.listdir("{}".format(scripts)):
+			if errorfile == "end_snakemake":
+				sys.exit(1)
 
 
 #Collecting fasta files for bacterial prophage hosts with script4
