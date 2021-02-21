@@ -14,7 +14,7 @@ min_genes_set = 60
 gap_thres_set = 15
 curdir = str(os.getcwd())
 cores = subprocess.check_output(['nproc']).decode("utf-8")
-if cores => 5:
+if cores >= 5:
 	cores = 4
 
 #Define script path
