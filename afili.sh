@@ -31,7 +31,7 @@ if [[ $add == *"-h"* ]] || [[ $add == *"--help"* ]]; then
 	echo "[-a run add-ons in the pipeline (Not yet available)]"
 	echo "[-i --identity (float) Percent identity threshold used in BLAST]"
 	echo "[-cov --coverage (float) Percent query coverage threshold used in BLAST]"
-	echo "[-cor --cores (float) Max amount of cores used by Afili]"
+	echo "[-cor --cores (float) Max amount of cores used by Afili, with an upper limit of 4]"
 	echo "[--max (float) Maximal percent length relative to average of original samples]"
 	echo "[--min (float) Minimal percent length relative to average of original samples]"
 	echo "[--genes (float) Minimal amount of the orignial genes that should be present in a putative phage]"
