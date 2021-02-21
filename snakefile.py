@@ -51,7 +51,7 @@ rule Filter_results_from_BLAST:
 		os.system("python {}/filter.py ".format(scripts))
 		for errorfile in os.listdir("{}".format(scripts)):
 			if errorfile == "end_snakemake":
-				sys.exit(1)
+				print("Further analysis is not possible, due to lack of homologue matches.")
 
 
 #Collecting fasta files for bacterial prophage hosts with script4
