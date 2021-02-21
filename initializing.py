@@ -14,6 +14,8 @@ min_genes_set = 60
 gap_thres_set = 15
 curdir = str(os.getcwd())
 cores = subprocess.check_output(['nproc']).decode("utf-8")
+if cores => 5:
+	cores = 4
 
 #Define script path
 scripts = sys.argv[0]
@@ -157,21 +159,21 @@ if database_present == False:
 	else:
 		os.system("cat refseq/bacteria/**/*.fna.gz >> " + str(genus) + "_DNA_cds.fna.gz")
 	os.system("mv refseq/bacteria/**/*.fna.gz ./")
-	os.system("gunzip *.gz")
+	os.system("parallel gunzip *.gz")
 	
 	#Make database format
 	print("making database files")
 	for fasta in os.listdir():
 		if typestrain == False:
 			if fasta.endswith("fna"):
-				command = "makeblastdb -in " + fasta + " -dbtype nucl -parse_seqids -out ../db/"+str(genus)+"/"+ fasta+"_DNA_DB >/dev/null 2>&1"
+				command = "parallel makeblastdb -in " + fasta + " -dbtype nucl -parse_seqids -out ../db/"+str(genus)+"/"+ fasta+"_DNA_DB >/dev/null 2>&1"
 				os.system(command)
 				with open("../db/"+str(genus)+"/database_names.txt",'a') as names:		#Make list with all individual database names
 					if fasta != str(genus) + "_DNA_cds.fna":
 						names.write(fasta + "_DNA_DB\n")
 		else:
 			if fasta.endswith("fna"):
-				command = "makeblastdb -in " + fasta + " -dbtype nucl -parse_seqids -out ../db/"+str(genus)+"T/"+ fasta+"_DNA_DB >/dev/null 2>&1"
+				command = "parallel makeblastdb -in " + fasta + " -dbtype nucl -parse_seqids -out ../db/"+str(genus)+"T/"+ fasta+"_DNA_DB >/dev/null 2>&1"
 				os.system(command)
 				with open("../db/"+str(genus)+"T/database_names.txt",'a') as names:		#Make list with all individual database names
 					if fasta != str(genus) + "T_DNA_cds.fna":
@@ -319,7 +321,7 @@ error_flag = False
 try:
 	os.chdir(fasta_folder)
 except OSError:
-	print("The specified fasta folder does not excist.")
+	print("The specified fasta folder does not exist.")
 	sys.exit(1)
 	
 	
