@@ -202,7 +202,7 @@ rule collect_all_results:
 			os.system("mv {}/ANI.pdf {}/RESULTS".format(scripts,scripts))
 		else:
 			print("##############################################################")
-			print("ERROR MESSAGE: No ANI.pdf heat map was produced. \n Possible reason: Amount of hits was too small.\nFor ANI matrix see ANI_matrix.txt%")
+			print("ERROR MESSAGE: No ANI.pdf heat map was produced.")
 			print("##############################################################")
 		os.system("mv {}/ANI_matrix.txt {}/RESULTS".format(scripts,scripts))
 		os.system("mv {}/phage_coordinates.txt {}/RESULTS".format(scripts,scripts))
