@@ -134,7 +134,7 @@ Possible inputs
 
 [-cov --coverage (float) Percent query coverage threshold used in BLAST]
 
-[-cor --cores (float) Max amount of cores used by Afili]
+[-cor --cores (float) Max amount of cores used by Afilim, with an upper limit of 4]
 
 [--max (float) Maximal percent length relative to average of original samples]
 
