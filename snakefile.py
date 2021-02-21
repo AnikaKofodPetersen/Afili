@@ -61,8 +61,11 @@ rule collecting_host_fastas:
 	output:
 		"{}/collection_host_done".format(scripts)
 	run: 
-		os.chdir("{}/".format(scripts)),
-		os.system("python {}/collection_host.py >> output.log".format(scripts))
+		if not os.path.isfile("{}/end_snakemake".format(scripts)):
+			os.chdir("{}/".format(scripts)),
+			os.system("python {}/collection_host.py >> output.log".format(scripts))
+		else:
+			touch
 
 #Making a list of phages at unique positions in all hosts using script6
 rule list_of_phages_w_unique_host_or_position:
@@ -71,8 +74,11 @@ rule list_of_phages_w_unique_host_or_position:
 	output:
 		"{}/unique_lines_done".format(scripts)
 	run:
-		os.chdir("{}/".format(scripts)),
-		os.system("python {}/unique_phage.py >> output.log".format(scripts))
+		if not os.path.isfile("{}/end_snakemake".format(scripts)):
+			os.chdir("{}/".format(scripts)),
+			os.system("python {}/unique_phage.py >> output.log".format(scripts))
+		else:
+			touch
 
 #Actually collecting phage fastas with script7
 rule collect_phage_fastas_from_phage_list:
@@ -81,8 +87,11 @@ rule collect_phage_fastas_from_phage_list:
 	output:
 		"{}/collected_phages_done".format(scripts)
 	run:
-		os.chdir("{}/".format(scripts)),
-		os.system("python {}/unique_phage_fasta.py >> output.log ".format(scripts))
+		if not os.path.isfile("{}/end_snakemake".format(scripts)):
+			os.chdir("{}/".format(scripts)),
+			os.system("python {}/unique_phage_fasta.py >> output.log ".format(scripts))
+		else:
+			touch
 
 
 #Performing an add_on analysis on the collected phages
@@ -92,14 +101,17 @@ rule add_ons:
 	output:
 		"{}/add_on_done".format(scripts)
 	run:
-		os.chdir("{}/".format(scripts)),
-		os.mkdir("{}/ANI".format(scripts))
-		os.system("cp {}/collected_phages/*.fna ANI".format(scripts)),
-		if add_on == True:
-			pass
+		if not os.path.isfile("{}/end_snakemake".format(scripts)):
+			os.chdir("{}/".format(scripts)),
+			os.mkdir("{}/ANI".format(scripts))
+			os.system("cp {}/collected_phages/*.fna ANI".format(scripts)),
+			if add_on == True:
+				pass
+			else:
+				pass
+			os.system("touch {}/add_on_done".format(scripts))
 		else:
-			pass
-		os.system("touch {}/add_on_done".format(scripts))
+			touch
 
 
 #Gene predict the collected phages with script8
@@ -109,8 +121,11 @@ rule Prokka_all_phages_from_list:
 	output:
 		"{}/Prokka_collected_done".format(scripts)
 	run:
-		os.chdir("{}/".format(scripts)),
-		os.system("python {}/prokka_putative_phage.py >> output.log".format(scripts))
+		if not os.path.isfile("{}/end_snakemake".format(scripts)):
+			os.chdir("{}/".format(scripts)),
+			os.system("python {}/prokka_putative_phage.py >> output.log".format(scripts))
+		else:
+			touch
 
 #Copy the gff files from the gene prediction of the collected phages and perform a roary 
 # core gene alignment with decreasing %-identity threshold with script14
@@ -122,16 +137,19 @@ rule roary_fasttree_on_all_phages:
 	output:
 		"{}/collected_analysis_done".format(scripts)
 	run:
-		skip_phyl = False
-		for file_name in os.listdir(scripts):
-			if file_name == "skip_phylogeny":
-				skip_phyl = True
-				os.system("rm {}/skip_phylogeny".format(scripts))
-		if skip_phyl == True:
-			os.system("touch {}/collected_analysis_done".format(scripts))
+		if not os.path.isfile("{}/end_snakemake".format(scripts)):
+			skip_phyl = False
+			for file_name in os.listdir(scripts):
+				if file_name == "skip_phylogeny":
+					skip_phyl = True
+					os.system("rm {}/skip_phylogeny".format(scripts))
+			if skip_phyl == True:
+				os.system("touch {}/collected_analysis_done".format(scripts))
+			else:
+				os.chdir("{}/".format(scripts)),
+				os.system("python {}/collected_analysis.py >> output.log".format(scripts))
 		else:
-			os.chdir("{}/".format(scripts)),
-			os.system("python {}/collected_analysis.py >> output.log".format(scripts))
+			touch
 	
 #Perform an MLST analysis on the hosts
 rule MLST_check_hosts:
@@ -140,9 +158,11 @@ rule MLST_check_hosts:
 	output:
 		"{}/mlst_done".format(scripts)
 	run:
-		os.chdir("{}/".format(scripts)),
-		os.system("mlst {}/host_fastas/*.fna --quiet > {}/host_mlst.txt".format(scripts,scripts)),
-		os.system("touch {}/mlst_done".format(scripts))
+		if not os.path.isfile("{}/end_snakemake".format(scripts)):
+				os.chdir("{}/".format(scripts)),
+				os.system("mlst {}/host_fastas/*.fna --quiet > {}/host_mlst.txt".format(scripts,scripts)),
+				os.system("touch {}/mlst_done".format(scripts))
+		touch
 
 #Make metadata for the phylogenetic trees
 rule display_phylogeny:
@@ -153,8 +173,9 @@ rule display_phylogeny:
 	output:
 		"{}/phylogeny_display_done".format(scripts)
 	run:
-		os.chdir("{}/".format(scripts)),
-		os.system("python {}/phylogeny_display.py >> output.log".format(scripts))
+		if not os.path.isfile("{}/end_snakemake".format(scripts)):
+			os.chdir("{}/".format(scripts)),
+			os.system("python {}/phylogeny_display.py >> output.log".format(scripts))
 	
 #Perform an average nucleotide identity analysis with FastANI
 rule ANI:
@@ -167,10 +188,13 @@ rule ANI:
 	output:
 		"{}/ANI_done".format(scripts)
 	run:
-		os.chdir("{}/".format(scripts)),
-		os.system("python {}/ANI.py".format(scripts)),
-		os.system("python {}/ANI_formatting.py".format(scripts)),
-		os.system("touch {}/ANI_done".format(scripts))
+		if not os.path.isfile("{}/end_snakemake".format(scripts)):
+			os.chdir("{}/".format(scripts)),
+			os.system("python {}/ANI.py".format(scripts)),
+			os.system("python {}/ANI_formatting.py".format(scripts)),
+			os.system("touch {}/ANI_done".format(scripts))
+		else:
+			touch
 
 
 #Making heatmaps with R
@@ -180,8 +204,11 @@ rule Heatmaps:
 	output:
 		"{}/heatmaps_done".format(scripts)
 	run:
-		os.chdir("{}/".format(scripts)),
-		os.system("{}/RHeatmaps.sh >> output.log".format(scripts)),
+		if not os.path.isfile("{}/end_snakemake".format(scripts)):
+			os.chdir("{}/".format(scripts)),
+			os.system("{}/RHeatmaps.sh >> output.log".format(scripts))
+		else:
+			touch
 
 #Collect all results in a result folder
 #GET R HEAT MAPS
@@ -197,22 +224,22 @@ rule collect_all_results:
 		os.mkdir("{}/RESULTS".format(scripts))
 		if add_on == True:
 			pass
-		os.system("mv {}/newick_trees/originalsMetadata.txt {}/RESULTS".format(scripts,scripts))
-		os.system("mv {}/newick_trees/SpeciesMetadata.txt {}/RESULTS".format(scripts,scripts))
+		os.system("mv {}/newick_trees/originalsMetadata.txt {}/RESULTS  > /dev/null 2>&1".format(scripts,scripts))
+		os.system("mv {}/newick_trees/SpeciesMetadata.txt {}/RESULTS  > /dev/null 2>&1".format(scripts,scripts))
 		os.system("mv {}/newick_trees/my_tree_collected_analysis_rerooted.nw {}/RESULTS > /dev/null 2>&1".format(scripts,scripts))
 		os.system("mv {}/collected_phages/collected_analysis/Errors.txt {}/RESULTS > /dev/null 2>&1".format(scripts,scripts))
 		if "ANI.pdf" in os.listdir(scripts):
-			os.system("mv {}/ANI.pdf {}/RESULTS".format(scripts,scripts))
+			os.system("mv {}/ANI.pdf {}/RESULTS  > /dev/null 2>&1".format(scripts,scripts))
 		else:
 			print("##############################################################")
 			print("ERROR MESSAGE: No ANI.pdf heat map was produced.")
 			print("##############################################################")
-		os.system("mv {}/ANI_matrix.txt {}/RESULTS".format(scripts,scripts))
-		os.system("mv {}/phage_coordinates.txt {}/RESULTS".format(scripts,scripts))
-		os.system("mv {}/phage_completeness.txt {}/RESULTS".format(scripts,scripts))
-		os.system("mkdir -p {}/RESULTS_FASTA".format(output_folder))
-		os.system("mv {}/RESULTS {}".format(scripts, output_folder))
-		os.system("mv {}/collected_phages/*.fna {}".format(scripts, output_folder))
-		os.system("mv {}/*.fna {}/RESULTS_FASTA".format(output_folder, output_folder))
-		os.system("mv {}/output.log {}".format(scripts, output_folder))
+		os.system("mv {}/ANI_matrix.txt {}/RESULTS  > /dev/null 2>&1".format(scripts,scripts))
+		os.system("mv {}/phage_coordinates.txt {}/RESULTS  > /dev/null 2>&1".format(scripts,scripts))
+		os.system("mv {}/phage_completeness.txt {}/RESULTS  > /dev/null 2>&1".format(scripts,scripts))
+		os.system("mkdir -p {}/RESULTS_FASTA  > /dev/null 2>&1".format(output_folder))
+		os.system("mv {}/RESULTS {}  > /dev/null 2>&1".format(scripts, output_folder))
+		os.system("mv {}/collected_phages/*.fna {}  > /dev/null 2>&1".format(scripts, output_folder))
+		os.system("mv {}/*.fna {}/RESULTS_FASTA  > /dev/null 2>&1".format(output_folder, output_folder))
+		os.system("mv {}/output.log {}  > /dev/null 2>&1".format(scripts, output_folder))
 		os.system("touch {}/all_done".format(scripts))
