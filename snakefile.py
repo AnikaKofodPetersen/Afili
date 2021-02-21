@@ -65,7 +65,7 @@ rule collecting_host_fastas:
 			os.chdir("{}/".format(scripts)),
 			os.system("python {}/collection_host.py >> output.log".format(scripts))
 		else:
-			touch
+			os.system("touch {}/collection_host_done".format(scripts))
 
 #Making a list of phages at unique positions in all hosts using script6
 rule list_of_phages_w_unique_host_or_position:
@@ -78,7 +78,7 @@ rule list_of_phages_w_unique_host_or_position:
 			os.chdir("{}/".format(scripts)),
 			os.system("python {}/unique_phage.py >> output.log".format(scripts))
 		else:
-			touch
+			os.system("touch {}/unique_lines_done".format(scripts))
 
 #Actually collecting phage fastas with script7
 rule collect_phage_fastas_from_phage_list:
@@ -91,7 +91,7 @@ rule collect_phage_fastas_from_phage_list:
 			os.chdir("{}/".format(scripts)),
 			os.system("python {}/unique_phage_fasta.py >> output.log ".format(scripts))
 		else:
-			touch
+			os.system("touch {}/collected_phages_done".format(scripts))
 
 
 #Performing an add_on analysis on the collected phages
@@ -111,7 +111,7 @@ rule add_ons:
 				pass
 			os.system("touch {}/add_on_done".format(scripts))
 		else:
-			touch
+			os.system("touch {}/add_on_done".format(scripts))
 
 
 #Gene predict the collected phages with script8
@@ -125,7 +125,7 @@ rule Prokka_all_phages_from_list:
 			os.chdir("{}/".format(scripts)),
 			os.system("python {}/prokka_putative_phage.py >> output.log".format(scripts))
 		else:
-			touch
+			os.system("touch {}/Prokka_collected_done".format(scripts))
 
 #Copy the gff files from the gene prediction of the collected phages and perform a roary 
 # core gene alignment with decreasing %-identity threshold with script14
@@ -149,7 +149,8 @@ rule roary_fasttree_on_all_phages:
 				os.chdir("{}/".format(scripts)),
 				os.system("python {}/collected_analysis.py >> output.log".format(scripts))
 		else:
-			touch
+			os.system("touch {}/collected_analysis_done".format(scripts))
+
 	
 #Perform an MLST analysis on the hosts
 rule MLST_check_hosts:
@@ -162,7 +163,8 @@ rule MLST_check_hosts:
 				os.chdir("{}/".format(scripts)),
 				os.system("mlst {}/host_fastas/*.fna --quiet > {}/host_mlst.txt".format(scripts,scripts)),
 				os.system("touch {}/mlst_done".format(scripts))
-		touch
+		else:
+			os.system("touch {}/mlst_done".format(scripts))
 
 #Make metadata for the phylogenetic trees
 rule display_phylogeny:
@@ -176,6 +178,8 @@ rule display_phylogeny:
 		if not os.path.isfile("{}/end_snakemake".format(scripts)):
 			os.chdir("{}/".format(scripts)),
 			os.system("python {}/phylogeny_display.py >> output.log".format(scripts))
+		else:
+			os.system("touch {}/phylogeny_display_done".format(scripts))
 	
 #Perform an average nucleotide identity analysis with FastANI
 rule ANI:
@@ -194,7 +198,7 @@ rule ANI:
 			os.system("python {}/ANI_formatting.py".format(scripts)),
 			os.system("touch {}/ANI_done".format(scripts))
 		else:
-			touch
+			os.system("touch {}/ANI_done".format(scripts))
 
 
 #Making heatmaps with R
@@ -208,7 +212,7 @@ rule Heatmaps:
 			os.chdir("{}/".format(scripts)),
 			os.system("{}/RHeatmaps.sh >> output.log".format(scripts))
 		else:
-			touch
+			os.system("touch {}/heatmaps_done".format(scripts))
 
 #Collect all results in a result folder
 #GET R HEAT MAPS
