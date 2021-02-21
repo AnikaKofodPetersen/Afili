@@ -132,7 +132,7 @@ if len(predicted_phages) == 0:
 	print("Will not be able to produce the neccessary files. MissingFileError might occur.\n\n\n")
 	print("########################################################################\n\n\n")
 	os.system("touch ../all_done")
-	os.system("touch ../filtering_done")
+	os.system("touch ../end_snakemake")
 	sys.exit(1)
 	
 #Check for impossible phylogeny
