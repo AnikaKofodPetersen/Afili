@@ -131,6 +131,7 @@ if len(predicted_phages) == 0:
 	print("There where no homologue matches in the database to your query.")
 	print("Will not be able to produce the neccessary files. MissingFileError might occur.\n\n\n")
 	print("########################################################################\n\n\n")
+	os.system("touch ../end_snakemake")
 	os.system("touch ../filtering_done")
 	os.system("touch ../collection_host_done")
 	os.system("touch ../unique_lines_done")
