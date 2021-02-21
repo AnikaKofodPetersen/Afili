@@ -15,6 +15,7 @@ gap_thres_set = 15
 curdir = str(os.getcwd())
 cores = subprocess.check_output(['nproc']).decode("utf-8")
 if int(cores) >= 5:
+	print("Not able to use {} cores. Will use 4 cores".format(cores))
 	cores = "4"
 
 #Define script path
