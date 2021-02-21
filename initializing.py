@@ -70,9 +70,12 @@ for argument in range(0,len(arguments)):
 	#Percent identity used in BLAST
 	if arguments[argument].startswith("-cov") or arguments[argument].startswith("--coverage"):
 		coverage = arguments[argument+1]
-	#Mac amount of cores
+	#Max amount of cores
 	if arguments[argument].startswith("-cor") or arguments[argument].startswith("--cores"):
 		cores = arguments[argument+1]
+		if int(cores) >= 5:
+			print("Not able to use {} cores. Will use 4 cores".format(cores))
+			cores = "4"
 		
 	
 try:
