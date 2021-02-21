@@ -3,6 +3,7 @@
 #import packages and change directory
 import os
 import copy
+import sys
 
 os.chdir("blast_folder")
 
@@ -132,6 +133,7 @@ if len(predicted_phages) == 0:
 	print("########################################################################\n\n\n")
 	os.system("touch ../all_done")
 	os.system("touch ../filtering_done")
+	sys.exit(1)
 	
 #Check for impossible phylogeny
 elif len(predicted_phages) == 1:
