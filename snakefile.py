@@ -19,6 +19,7 @@ rule PROKKA_original_ppBGCs:
 		"{}/start_done".format(scripts)
 	output:
 		"{}/prokka_prophage_done".format(scripts)
+	threads: workflow.cores * 1
 	run:
 		os.chdir("{}/".format(scripts)),
 		os.system("python {}/prokka_prophage.py >> output.log".format(scripts)),
@@ -29,12 +30,12 @@ rule PROKKA_original_ppBGCs:
 
 
 #Perform a BLAST search for each gene in each .ffn file against the downloaded database using script2
-#settings: %-identity = 25, %-query coverage = 30
 rule BLAST_ppBGCs_against_database:
 	input: 
 		"{}/prokka_prophage_done".format(scripts)
 	output:
 		"{}/blast_done".format(scripts)
+	threads: workflow.cores * 1
 	run:
 		os.chdir("{}/".format(scripts)),
 		os.system("python {}/blast.py >> output.log".format(scripts))
@@ -46,6 +47,7 @@ rule Filter_results_from_BLAST:
 		"{}/blast_done".format(scripts)
 	output:
 		"{}/filtering_done".format(scripts)
+	threads: workflow.cores * 1
 	run:
 		os.chdir("{}/".format(scripts)),
 		os.system("python {}/filter.py ".format(scripts))
@@ -57,12 +59,13 @@ rule Filter_results_from_BLAST:
 				
 
 
-#Collecting fasta files for bacterial prophage hosts with script4
+#Collecting fasta files for bacterial prophage hosts
 rule collecting_host_fastas:
 	input:
 		"{}/filtering_done".format(scripts)
 	output:
 		"{}/collection_host_done".format(scripts)
+	threads: workflow.cores * 1
 	run: 
 		if not os.path.isfile("{}/end_snakemake".format(scripts)):
 			os.chdir("{}/".format(scripts)),
@@ -70,12 +73,13 @@ rule collecting_host_fastas:
 		else:
 			os.system("touch {}/collection_host_done".format(scripts))
 
-#Making a list of phages at unique positions in all hosts using script6
+#Making a list of phages at unique positions in all hosts
 rule list_of_phages_w_unique_host_or_position:
 	input:
 		"{}/collection_host_done".format(scripts)
 	output:
 		"{}/unique_lines_done".format(scripts)
+	threads: workflow.cores * 0.3
 	run:
 		if not os.path.isfile("{}/end_snakemake".format(scripts)):
 			os.chdir("{}/".format(scripts)),
@@ -89,6 +93,7 @@ rule collect_phage_fastas_from_phage_list:
 		"{}/unique_lines_done".format(scripts)
 	output:
 		"{}/collected_phages_done".format(scripts)
+	threads: workflow.cores * 0.3
 	run:
 		if not os.path.isfile("{}/end_snakemake".format(scripts)):
 			os.chdir("{}/".format(scripts)),
@@ -103,6 +108,7 @@ rule add_ons:
 		"{}/collected_phages_done".format(scripts)
 	output:
 		"{}/add_on_done".format(scripts)
+	threads: workflow.cores * 0.5
 	run:
 		if not os.path.isfile("{}/end_snakemake".format(scripts)):
 			os.chdir("{}/".format(scripts)),
@@ -123,6 +129,7 @@ rule Prokka_all_phages_from_list:
 		"{}/collected_phages_done".format(scripts)
 	output:
 		"{}/Prokka_collected_done".format(scripts)
+	threads: workflow.cores * 0.75
 	run:
 		if not os.path.isfile("{}/end_snakemake".format(scripts)):
 			os.chdir("{}/".format(scripts)),
@@ -131,7 +138,7 @@ rule Prokka_all_phages_from_list:
 			os.system("touch {}/Prokka_collected_done".format(scripts))
 
 #Copy the gff files from the gene prediction of the collected phages and perform a roary 
-# core gene alignment with decreasing %-identity threshold with script14
+# core gene alignment with decreasing %-identity threshold 
 #And display the phylogenetic trees
 rule roary_fasttree_on_all_phages:
 	input:
@@ -139,6 +146,7 @@ rule roary_fasttree_on_all_phages:
 		"{}/phylogeny_display_done".format(scripts)
 	output:
 		"{}/collected_analysis_done".format(scripts)
+	threads: workflow.cores * 0.75
 	run:
 		if not os.path.isfile("{}/end_snakemake".format(scripts)):
 			skip_phyl = False
@@ -161,6 +169,7 @@ rule MLST_check_hosts:
 		"{}/collection_host_done".format(scripts)
 	output:
 		"{}/mlst_done".format(scripts)
+	threads: workflow.cores * 0.7
 	run:
 		if not os.path.isfile("{}/end_snakemake".format(scripts)):
 				os.chdir("{}/".format(scripts)),
@@ -177,6 +186,7 @@ rule display_phylogeny:
 		"{}/add_on_done".format(scripts)
 	output:
 		"{}/phylogeny_display_done".format(scripts)
+	threads: workflow.cores * 0.3
 	run:
 		if not os.path.isfile("{}/end_snakemake".format(scripts)):
 			os.chdir("{}/".format(scripts)),
@@ -194,6 +204,7 @@ rule ANI:
 		"{}/Prokka_collected_done".format(scripts)
 	output:
 		"{}/ANI_done".format(scripts)
+	threads: workflow.cores * 0.75
 	run:
 		if not os.path.isfile("{}/end_snakemake".format(scripts)):
 			os.chdir("{}/".format(scripts)),
@@ -210,6 +221,7 @@ rule Heatmaps:
 		"{}/ANI_done".format(scripts)
 	output:
 		"{}/heatmaps_done".format(scripts)
+	threads: workflow.cores * 0.3
 	run:
 		if not os.path.isfile("{}/end_snakemake".format(scripts)):
 			os.chdir("{}/".format(scripts)),
@@ -226,6 +238,7 @@ rule collect_all_results:
 		"{}/collected_analysis_done".format(scripts)
 	output:
 		"{}/all_done".format(scripts)
+	threads: workflow.cores * 1
 	run:
 		os.chdir("{}/".format(scripts)),
 		os.mkdir("{}/RESULTS".format(scripts))
