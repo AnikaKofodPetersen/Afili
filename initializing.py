@@ -158,7 +158,7 @@ if database_present == False:
 	else:
 		os.system("cat refseq/bacteria/**/*.fna.gz >> " + str(genus) + "_DNA_cds.fna.gz")
 	os.system("mv refseq/bacteria/**/*.fna.gz ./")
-	os.system("gunzip *.gz | parallel")
+	os.system("gunzip *.gz | parallel -j {}".format(cores))
 	
 	#Make database format
 	print("making database files")
