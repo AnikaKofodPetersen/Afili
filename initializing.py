@@ -3,6 +3,7 @@ import os
 import sys
 import subprocess
 import re
+os.system("parallel --citation")
 
 #Default setting
 typestrain = False
