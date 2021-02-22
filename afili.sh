@@ -13,10 +13,7 @@ elif [[ $add == *"-cor"* ]]; then
 else
 	cores1="$(nproc)"
 	cores="$((cores1 - 1))"
-if [[ $cores -ge 5 ]]; then
-	echo "Snakemake cannot run with more than 4 cores. Will run with 4 cores instead of $cores"
-	cores=4
-fi
+
 fi
 #Check command line arguments and print help
 if [[ $add == *"-h"* ]] || [[ $add == *"--help"* ]]; then
