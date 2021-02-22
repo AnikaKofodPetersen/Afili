@@ -164,9 +164,9 @@ if database_present == False:
 	print("making database files")
 	if typestrain == False:
 		command = "ls *fna | parallel -j {} ".format(cores)
-		command += "'makeblastdb -in {} -dbtype nucl -parse_seqids -out ../db/"
+		command += "makeblastdb -in {} -dbtype nucl -parse_seqids -out ../db/"
 		command += str(genus)
-		command += "/{}_DNA_DB' >/dev/null 2>&1"
+		command += "/{}_DNA_DB >/dev/null 2>&1"
 		print(command)
 		os.system(command)
 		for fasta in os.listdir():
