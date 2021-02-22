@@ -20,7 +20,6 @@ for ffn_file in os.listdir():								#iterate over all files in directory
 			for line in databases:
 				command = "blastn -query " + str(ffn_file)+" -db " + str(line[:-1]) +" -outfmt 6 -perc_identity "+ str(identity)+" -qcov_hsp_perc "+str(coverage)
 				command += "> " + str(ffn_file) + "vs"+str(line[:-1])+"_blast"
-				print(command)
 				with redirect_stdout(text_trap):
 					os.system(command)						#perform a blast search 
 					
