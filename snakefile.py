@@ -38,7 +38,7 @@ rule BLAST_ppBGCs_against_database:
 	threads: workflow.cores * 1
 	run:
 		os.chdir("{}/".format(scripts)),
-		os.system("python {}/blast.py >> output.log".format(scripts))
+		os.system("python {}/blast.py >> output.log 2>/dev/null".format(scripts))
 	
 
 #Parsing the results from the BLAST search with script3
