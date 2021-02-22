@@ -162,9 +162,9 @@ if database_present == False:
 	
 	#Make database format
 	print("making database files")
-	os.system("ls -l *fna")
+	os.system("chmod -R 755 *")
 	if typestrain == False:
-		command = "ls *fna | parallel -j " +str(cores) + " makeblastdb -in ./{} -dbtype nucl -parse_seqids -out ../db/" + str(genus) + "/{}_DNA_DB"
+		command = """find . -name "*fna" | parallel -j """ +str(cores) + " makeblastdb -in ./{} -dbtype nucl -parse_seqids -out ../db/" + str(genus) + "/{}_DNA_DB"
 		print(command)
 		os.system(command)
 		for fasta in os.listdir():
