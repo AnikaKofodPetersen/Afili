@@ -185,16 +185,16 @@ if database_present == False:
 #Run add-ons 
 if "-a" in sys.argv[1:]:
 	with open(scripts+"/scripts/attachment.txt",'w') as attachment:
-		attachment.write("\nadd_on = True\ncores = {}\n#import packages and setting working directory\nimport os\noutput_folder = \"{}\"\nfasta_folder = \"{}\"\n\n\nscripts = \"{}/scripts\"\n".format(output_folder,fasta_folder,scripts))
-	command = "cat {}/scripts/attachment.txt {}/snakefile.py >> {}/snakefile_run.py".format(cores,scripts, scripts, scripts)
+		attachment.write("\nadd_on = True\n#import packages and setting working directory\nimport os\noutput_folder = \"{}\"\nfasta_folder = \"{}\"\n\n\nscripts = \"{}/scripts\"\n".format(output_folder,fasta_folder,scripts))
+	command = "cat {}/scripts/attachment.txt {}/snakefile.py >> {}/snakefile_run.py".format(scripts, scripts, scripts)
 	os.system(command)
 	os.system("chmod a+x {}/snakefile.py".format(scripts))
 	command = "cat {}/scripts/attachment.txt {}/scripts/script1.0.py >> {}/scripts/phylogeny_display.py".format(scripts, scripts, scripts)
 	os.system(command)
 else:
 	with open(scripts+"/scripts/attachment.txt",'w') as attachment:
-		attachment.write("\nadd_on = False\ncores = {}\n#import packages and setting working directory\nimport os\noutput_folder = \"{}\"\nfasta_folder = \"{}\"\n\nscripts = \"{}/scripts\"\n".format(output_folder,fasta_folder,scripts))
-	command = "cat {}/scripts/attachment.txt {}/snakefile.py >> {}/snakefile_run.py".format(cores,scripts,scripts,scripts)
+		attachment.write("\nadd_on = False\n#import packages and setting working directory\nimport os\noutput_folder = \"{}\"\nfasta_folder = \"{}\"\n\nscripts = \"{}/scripts\"\n".format(output_folder,fasta_folder,scripts))
+	command = "cat {}/scripts/attachment.txt {}/snakefile.py >> {}/snakefile_run.py".format(scripts,scripts,scripts)
 	os.system(command)
 	os.system("chmod a+x {}/snakefile.py".format(scripts))
 	command = "cat {}/scripts/attachment.txt {}/scripts/script1.0.py >> {}/scripts/phylogeny_display.py".format(scripts,scripts,scripts)
