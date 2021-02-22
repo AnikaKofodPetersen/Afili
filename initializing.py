@@ -162,21 +162,19 @@ if database_present == False:
 	
 	#Make database format
 	print("making database files")
-	for fasta in os.listdir():
-		if typestrain == False:
-			if fasta.endswith("fna"):
-				command = "makeblastdb -in " + fasta + " -dbtype nucl -parse_seqids -out ../db/"+str(genus)+"/"+ fasta+"_DNA_DB  | parallel >/dev/null 2>&1"
-				os.system(command)
-				with open("../db/"+str(genus)+"/database_names.txt",'a') as names:		#Make list with all individual database names
-					if fasta != str(genus) + "_DNA_cds.fna":
-						names.write(fasta + "_DNA_DB\n")
-		else:
-			if fasta.endswith("fna"):
-				command = "makeblastdb -in " + fasta + " -dbtype nucl -parse_seqids -out ../db/"+str(genus)+"T/"+ fasta+"_DNA_DB  | parallel >/dev/null 2>&1"
-				os.system(command)
-				with open("../db/"+str(genus)+"T/database_names.txt",'a') as names:		#Make list with all individual database names
-					if fasta != str(genus) + "T_DNA_cds.fna":
-						names.write(fasta + "_DNA_DB\n")
+	if typestrain == False:
+		command = "ls *fna | parallel 'makeblastdb -in {} -dbtype nucl -parse_seqids -out ../db/{}/{}_DNA_DB' >/dev/null 2>&1".format(fasta,genus,fasta)
+		os.system(command)
+		with open("../db/"+str(genus)+"/database_names.txt",'a') as names:		#Make list with all individual database names
+			if fasta != str(genus) + "_DNA_cds.fna":
+				names.write(fasta + "_DNA_DB\n")
+		
+	else:
+		command = "ls *fna | parallel 'makeblastdb -in {} -dbtype nucl -parse_seqids -out ../db/{}/{}_DNA_DB' >/dev/null 2>&1".format(fasta,genus,fasta)
+		os.system(command)
+		with open("../db/"+str(genus)+"T/database_names.txt",'a') as names:		#Make list with all individual database names
+			if fasta != str(genus) + "T_DNA_cds.fna":
+				names.write(fasta + "_DNA_DB\n")
 			
 			
 	os.chdir("..")			
