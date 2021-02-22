@@ -163,6 +163,7 @@ if database_present == False:
 	#Make database format
 	print("making database files")
 	if typestrain == False:
+		os.system("ls *fna")
 		command = "ls *fna | parallel -j " +str(cores) + " 'makeblastdb -in {} -dbtype nucl -parse_seqids -out ../db/" + str(genus) + "/{}_DNA_DB' >/dev/null 2>&1"
 		print(command)
 		os.system(command)
