@@ -14,9 +14,7 @@ min_genes_set = 60
 gap_thres_set = 15
 curdir = str(os.getcwd())
 cores = subprocess.check_output(['nproc']).decode("utf-8")
-if int(cores) >= 5:
-	print("Not able to use {} cores. Will use 4 cores".format(cores))
-	cores = "4"
+
 
 #Define script path
 scripts = sys.argv[0]
@@ -73,9 +71,6 @@ for argument in range(0,len(arguments)):
 	#Max amount of cores
 	if arguments[argument].startswith("-cor") or arguments[argument].startswith("--cores"):
 		cores = arguments[argument+1]
-		if int(cores) >= 5:
-			print("Not able to use {} cores. Will use 4 cores".format(cores))
-			cores = "4"
 		
 	
 try:
@@ -163,21 +158,21 @@ if database_present == False:
 	else:
 		os.system("cat refseq/bacteria/**/*.fna.gz >> " + str(genus) + "_DNA_cds.fna.gz")
 	os.system("mv refseq/bacteria/**/*.fna.gz ./")
-	os.system("gunzip *.gz")
+	os.system("parallel gunzip *.gz --citation")
 	
 	#Make database format
 	print("making database files")
 	for fasta in os.listdir():
 		if typestrain == False:
 			if fasta.endswith("fna"):
-				command = "makeblastdb -in " + fasta + " -dbtype nucl -parse_seqids -out ../db/"+str(genus)+"/"+ fasta+"_DNA_DB >/dev/null 2>&1"
+				command = "parallel makeblastdb -in " + fasta + " -dbtype nucl -parse_seqids -out ../db/"+str(genus)+"/"+ fasta+"_DNA_DB --citation >/dev/null 2>&1"
 				os.system(command)
 				with open("../db/"+str(genus)+"/database_names.txt",'a') as names:		#Make list with all individual database names
 					if fasta != str(genus) + "_DNA_cds.fna":
 						names.write(fasta + "_DNA_DB\n")
 		else:
 			if fasta.endswith("fna"):
-				command = "makeblastdb -in " + fasta + " -dbtype nucl -parse_seqids -out ../db/"+str(genus)+"T/"+ fasta+"_DNA_DB >/dev/null 2>&1"
+				command = "parallel makeblastdb -in " + fasta + " -dbtype nucl -parse_seqids -out ../db/"+str(genus)+"T/"+ fasta+"_DNA_DB --citation >/dev/null 2>&1"
 				os.system(command)
 				with open("../db/"+str(genus)+"T/database_names.txt",'a') as names:		#Make list with all individual database names
 					if fasta != str(genus) + "T_DNA_cds.fna":
@@ -190,16 +185,16 @@ if database_present == False:
 #Run add-ons 
 if "-a" in sys.argv[1:]:
 	with open(scripts+"/scripts/attachment.txt",'w') as attachment:
-		attachment.write("\nadd_on = True\n#import packages and setting working directory\nimport os\noutput_folder = \"{}\"\nfasta_folder = \"{}\"\n\n\nscripts = \"{}/scripts\"\n".format(output_folder,fasta_folder,scripts))
-	command = "cat {}/scripts/attachment.txt {}/snakefile.py >> {}/snakefile_run.py".format(scripts, scripts, scripts)
+		attachment.write("\nadd_on = True\ncores = {}\n#import packages and setting working directory\nimport os\noutput_folder = \"{}\"\nfasta_folder = \"{}\"\n\n\nscripts = \"{}/scripts\"\n".format(output_folder,fasta_folder,scripts))
+	command = "cat {}/scripts/attachment.txt {}/snakefile.py >> {}/snakefile_run.py".format(cores,scripts, scripts, scripts)
 	os.system(command)
 	os.system("chmod a+x {}/snakefile.py".format(scripts))
 	command = "cat {}/scripts/attachment.txt {}/scripts/script1.0.py >> {}/scripts/phylogeny_display.py".format(scripts, scripts, scripts)
 	os.system(command)
 else:
 	with open(scripts+"/scripts/attachment.txt",'w') as attachment:
-		attachment.write("\nadd_on = False\n#import packages and setting working directory\nimport os\noutput_folder = \"{}\"\nfasta_folder = \"{}\"\n\nscripts = \"{}/scripts\"\n".format(output_folder,fasta_folder,scripts))
-	command = "cat {}/scripts/attachment.txt {}/snakefile.py >> {}/snakefile_run.py".format(scripts,scripts,scripts)
+		attachment.write("\nadd_on = False\ncores = {}\n#import packages and setting working directory\nimport os\noutput_folder = \"{}\"\nfasta_folder = \"{}\"\n\nscripts = \"{}/scripts\"\n".format(output_folder,fasta_folder,scripts))
+	command = "cat {}/scripts/attachment.txt {}/snakefile.py >> {}/snakefile_run.py".format(cores,scripts,scripts,scripts)
 	os.system(command)
 	os.system("chmod a+x {}/snakefile.py".format(scripts))
 	command = "cat {}/scripts/attachment.txt {}/scripts/script1.0.py >> {}/scripts/phylogeny_display.py".format(scripts,scripts,scripts)
