@@ -45,7 +45,7 @@ if [ $errors -ne 0 ]; then
 	exit 1
 fi
 #Running the actual data analysis
-snakemake -s $afili_path/snakefile_run.py --cores $cores --quiet
+snakemake -s $afili_path/snakefile_run.py --cores $cores --quiet --nocolor
 #Running clean up
 cd $afili_path
 ./cleanup.sh
