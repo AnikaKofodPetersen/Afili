@@ -71,6 +71,8 @@ $ conda activate afili_env
 
 $ prokka --setupdb
 
+$ parallel --citation
+
 Lastly, run a test with the available test file as follows:
 
 $ ./afili.sh -F test_fasta --genus bacillus -O test_output
