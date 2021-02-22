@@ -163,8 +163,7 @@ if database_present == False:
 	#Make database format
 	print("making database files")
 	if typestrain == False:
-		os.system("ls *fna")
-		command = "ls *fna | parallel -j " +str(cores) + " 'makeblastdb -in {} -dbtype nucl -parse_seqids -out ../db/" + str(genus) + "/{}_DNA_DB' >/dev/null 2>&1"
+		command = "ls *fna | parallel -j " +str(cores) + " 'makeblastdb -in {.} -dbtype nucl -parse_seqids -out ../db/" + str(genus) + "/{.}_DNA_DB' >/dev/null 2>&1"
 		print(command)
 		os.system(command)
 		for fasta in os.listdir():
@@ -173,7 +172,7 @@ if database_present == False:
 					names.write(fasta + "_DNA_DB\n")
 		
 	else:
-		command = "ls *fna | parallel -j " +str(cores) + " 'makeblastdb -in {} -dbtype nucl -parse_seqids -out ../db/" + str(genus) + "T/{}T_DNA_DB' >/dev/null 2>&1"
+		command = "ls *fna | parallel -j " +str(cores) + " 'makeblastdb -in {.} -dbtype nucl -parse_seqids -out ../db/" + str(genus) + "T/{.}T_DNA_DB' >/dev/null 2>&1"
 		os.system(command)
 		for fasta in os.listdir():
 			with open("../db/"+str(genus)+"T/database_names.txt",'a') as names:		#Make list with all individual database names
