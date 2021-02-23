@@ -66,7 +66,7 @@ os.chdir(fasta_folder)
 print("making database files")
 for fasta in os.listdir():
 	if fasta.endswith("fna"):
-		command = "makeblastdb -in " + fasta + " -dbtype nucl -parse_seqids -out " + db + "/"+str(genus)+"/"+ fasta+"_DNA_DB 2> /dev/null"
+		command = "makeblastdb -in " + fasta + " -dbtype nucl -parse_seqids -out " + db + "/"+str(genus)+"/"+ fasta+"_DNA_DB > /dev/null 2>&1"
 		os.system(command)
 		with open(db+"/"+str(genus)+"/database_names.txt",'a') as names:		#Make list with all individual database names
 			if fasta != str(genus) + "_DNA_cds.fna":
