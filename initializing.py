@@ -176,7 +176,7 @@ if database_present == False:
 		for fasta in os.listdir():
 			with open("../db/"+str(genus)+"T/database_names.txt",'a') as names:		#Make list with all individual database names
 				if fasta != str(genus) + "T_DNA_cds.fna" and fasta.endswith(".fna"):
-					names.write(fasta + "_DNA_DB\n")
+					names.write(fasta + "T_DNA_DB\n")
 			
 			
 	os.chdir("..")			
