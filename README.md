@@ -148,6 +148,11 @@ Possible inputs
 #### MANUAL DATABASE ALTERATIONS
 The user can make a custom database by using the add_db.py script. This can be done by running the script and specify the path to the fasta files, the path to the Afili/db folder and the name of the database.
 
+Example: $ python add_db.py -F path/to/my/customfolder/ -DB Afili/db/ -N customdatabase
+
+This will create a custom database made from the fasta files in the folder customfolder. For using this custom database in Afili, use '--genus customdatabase'.
+
+
 [-H --help  Show this help menu]
 
 [-F --fasta The path to the folder with your fasta or fasta.gz files]
