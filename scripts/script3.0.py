@@ -124,6 +124,7 @@ print("TOTAL_BEFORE: {}  TOTAL_AFTER: {}   GENE_FILER: {}  MAX_LENGTH: {}   MIN_
 print("Average length of originals: " + str(ave_length) + "\n")
 print("Max length threshold: " + str(max_length) + "\n")
 print("Min length threshold: " + str(min_length) + "\n")
+print(str(len(predicted_phages)))
 #Make a 0-error
 if len(predicted_phages) == 0:
 	print("#########################################################################\n\n\n")
