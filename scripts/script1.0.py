@@ -40,7 +40,7 @@ with open("host_mlst.txt", 'r') as host_mlst:
 
 		with open("SpeciesMetadata.txt", 'a') as metadata:				#Write the color map for the phylogenetic display, one ST at the time for all the collected prophages
 			for label in ST_set:
-				label = re.sub(r'[^\d+[_]\d+[_]\w*_*\.*]', "_", label, count=0)
+				label = re.sub(r'[^\d*\w*_*\.*]', "_", label, count=0)
 				metadata.write(str(label) + "\t" + str(species) + "_" + str(ST)+"\n")
 
 
