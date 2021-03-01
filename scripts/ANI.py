@@ -13,12 +13,10 @@ with open("../newick_trees/SpeciesMetadata.txt",'r') as species:
 		ST = line.split("\t")[1][:-1]
 		query += ["./"+str(name)+str(ST)+".fna"]
 		for fasta in os.listdir():
-			if fasta[:-4] == name:
+			if fasta.endswith(".fna") and fasta.startswith(name):
 				command = "mv " + str(fasta) + " " + str(name)+str(ST) +".fna"
 				os.system(command)
-			elif fasta[:-5] == name:
-				command = "mv " + str(fasta) + " " + str(name)+str(ST) +".fna"
-				os.system(command)
+
 
 #Make query list
 query.pop(0)
