@@ -22,7 +22,7 @@ rule PROKKA_original_ppBGCs:
 	threads: workflow.cores * 1
 	run:
 		os.chdir("{}/".format(scripts)),
-		os.system("python {}/prokka_prophage.py >> output.log".format(scripts)),
+		os.system("python {}/prokka_prophage.py >> output.log 2>/dev/null".format(scripts)),
 		os.system("mkdir {}/blast_folder".format(scripts)),
 		os.system("mv {}/**/*.ffn blast_folder".format(scripts)),
 		os.system("touch {}/prokka_prophage_done".format(scripts))
@@ -133,7 +133,7 @@ rule Prokka_all_phages_from_list:
 	run:
 		if not os.path.isfile("{}/end_snakemake".format(scripts)):
 			os.chdir("{}/".format(scripts)),
-			os.system("python {}/prokka_putative_phage.py >> output.log".format(scripts))
+			os.system("python {}/prokka_putative_phage.py >> output.log 2>/dev/null".format(scripts))
 		else:
 			os.system("touch {}/Prokka_collected_done".format(scripts))
 
