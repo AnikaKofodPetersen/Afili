@@ -95,16 +95,16 @@ The metadata can manually be adapted to suit your tree visualizer.
 For the case of ITOL, please add your visualization type (LABEL, DATASET_BINARY etc.) followed by the seperator line(SEPERATOR TAB) and the data indicator (DATA).
 The header should start with # to ensure proper reading by ITOL.
 
-### Input 
-Afili works with fasta formatted files og phage genomes. 
-Since Afili aims to compare somewhat related genomes, the filtering thresholds are calculated on mean values of the input genomes. 
-If input genomes are of uncomparable lengths, it is suggested to run Afili several times, each on a subset of the input genomes, which indeed are comparable in lengths. 
-
 #### Where do I find my results?
 Your results will be placed in a folder called RESULTS inside the folder containing your fasta files
 
 #### How do I know how many genes are in the core genome?
 The number of core genes and the difinition of core genome can be seen lastly in the output.log file.
+
+### Input 
+Afili works with fasta formatted files og phage genomes. 
+Since Afili aims to compare somewhat related genomes, the filtering thresholds are calculated on mean values of the input genomes. 
+If input genomes are of uncomparable lengths, it is suggested to run Afili several times, each on a subset of the input genomes, which indeed are comparable in lengths. 
 
 ### OUTPUT
 In the folder containing your fasta files, all new phage-like elements are found as seperate fasta files and an output.log file.
