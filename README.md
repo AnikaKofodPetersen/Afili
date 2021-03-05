@@ -96,7 +96,7 @@ For the case of ITOL, please add your visualization type (LABEL, DATASET_BINARY 
 The header should start with # to ensure proper reading by ITOL.
 
 ### Input 
-Afili works with fasta formatted files og phages. 
+Afili works with fasta formatted files og phage genomes. 
 Since Afili aims to compare somewhat related genomes, the filtering thresholds are calculated on mean values of the input genomes. 
 If input genomes are of uncomparable lengths, it is suggested to run Afili several times, each on a subset of the input genomes, which indeed are comparable in lengths. 
 
