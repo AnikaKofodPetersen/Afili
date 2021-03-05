@@ -95,6 +95,11 @@ The metadata can manually be adapted to suit your tree visualizer.
 For the case of ITOL, please add your visualization type (LABEL, DATASET_BINARY etc.) followed by the seperator line(SEPERATOR TAB) and the data indicator (DATA).
 The header should start with # to ensure proper reading by ITOL.
 
+### Input 
+Afili works with fasta formatted files og phages. 
+Since Afili aims to compare somewhat related genomes, the filtering thresholds are calculated on mean values of the input genomes. 
+If input genomes are of uncomparable lengths, it is suggested to run Afili several times, each on a subset of the input genomes, which indeed are comparable in lengths. 
+
 #### Where do I find my results?
 Your results will be placed in a folder called RESULTS inside the folder containing your fasta files
 
