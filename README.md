@@ -116,21 +116,35 @@ In the folder RESULTS are the following output files:
 * ANI_matrix.txt:			A file containing the Average Nucleotide Identity matrix for the comparrision of all the phage_like elements
 * ANI.pdf:					A picture of the Average Nucleotide Identity heat map
 * my_tree_collected_analysis_rerooted.nw: 	A phylogenetic tree in newick format of all phage-like elements and original phage(s).
+* 
+The phage hit names have the following nomeclature:
+###X_Y_phage_Acc
+X = Input-phage specific number
+Y = Number phage found matching input-phage X in genom Acc
+Acc = accession number for the hit genome
 
 ### TROUBLESHOOTING
 #### Why can I not analyse a single phage?
 You definitly can, but your input must be a directory. 
 Even a single phage must be placed in a folder(directory), and this folder must be assigned as the input for Afili.
 
+### No hits
+If the complete genomes of the specified genus does not have any hits, a custom database can be made [see "Manual database alterations].
+Else, the thresholds can be manipulated, such as lowering the amount of genes needed to be a match (--genes) or change the precent identity threshold used by BLAST (-i).
+
 #### Why do i get fewer hits with more phages?
 If you analyze multiple phages in one go, all hit-thresholds are calculated based on the average of your fasta-files.
-Phages that differ largely in size would skew the threshold, causing otherwise hits to be missed.
+Phages that differ largely in size would skew the threshold, causing otherwise hits to be missed. It is not recommended to run phages with more than 2x difference in length.
 Afili expect that you want to analyze similar phages. If that is not the case, you should analyze the phages one by one. 
 
 #### Why does Afili crash when I did everything right?
 Did you remember to activate the environment?
 Everytime you want to use Afili in a new terminal remember to activate the environment, in order for Afili to find the dependencies.
 $conda activate afili_env
+
+### All out of ideas
+If you still don't have any clue of what goes wrong, check if your input files are in linux format.
+The format can be changed using dos2unix.
 
 
 ### SPECIFICATIONS
@@ -146,23 +160,23 @@ Possible inputs
 
 [-O --output Directory for output files]
 
-[-T --type Only uses the typestrains of the specified genus]
+[-T --type Only uses the typestrains of the specified genus Default:False]
 
 [-a Run add-on in the pipeline (Not yet available)]
 
-[-i --identity (float) Percent identity threshold used in BLAST]
+[-i --identity (float) Percent identity threshold used in BLAST Default:70]
 
-[-cov --coverage (float) Percent query coverage threshold used in BLAST]
+[-cov --coverage (float) Percent query coverage threshold used in BLAST Default:70]
 
-[-cor --cores (float) Max amount of cores used by Afili]
+[-cor --cores (integer) Max amount of cores used by Afili]
 
-[--max (float) Maximal percent length relative to average of original samples]
+[--max (float) Maximal percent length relative to average of original samples Default:150]
 
-[--min (float) Minimal percent length relative to average of original samples]
+[--min (float) Minimal percent length relative to average of original samples Default:50]
 
-[--genes (float) Minimal amount of the orignial genes that should be present in a putative phage]
+[--genes (float) Minimal amount of the orignial genes that should be present in a putative phage Default:60]
 
-[--gap (float) Minimal percent of unknown genes in a phage that in a continous stretch would indicate a gap]
+[--gap (float) Minimal percent of unknown genes in a phage that in a continous stretch would indicate a gap Default:15]
 
 
 #### MANUAL DATABASE ALTERATIONS
