@@ -118,10 +118,10 @@ In the folder RESULTS are the following output files:
 * my_tree_collected_analysis_rerooted.nw: 	A phylogenetic tree in newick format of all phage-like elements and original phage(s).
 * 
 The phage hit names have the following nomeclature:
-### X_Y_phage_Acc
- X = Input-phage specific number
- Y = Number phage found matching input-phage X in genom Acc
- Acc = accession number for the hit genome
+#### X_Y_phage_Acc
+ X = Input-phage specific number.  
+ Y = Number phage found matching input-phage X in genom Acc.  
+ Acc = accession number for the hit genome.  
 
 ### TROUBLESHOOTING
 #### Why can I not analyse a single phage?
