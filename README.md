@@ -101,7 +101,7 @@ Your results will be placed in a folder called RESULTS inside the folder contain
 #### How do I know how many genes are in the core genome?
 The number of core genes and the difinition of core genome can be seen lastly in the output.log file.
 
-### Input 
+### INPUT 
 Afili works with fasta formatted files og phage genomes. 
 Since Afili aims to compare somewhat related genomes, the filtering thresholds are calculated on mean values of the input genomes. 
 If input genomes are of uncomparable lengths, it is suggested to run Afili several times, each on a subset of the input genomes, which indeed are comparable in lengths. 
@@ -118,16 +118,16 @@ In the folder RESULTS are the following output files:
 * my_tree_collected_analysis_rerooted.nw: 	A phylogenetic tree in newick format of all phage-like elements and original phage(s).
 
 ### TROUBLESHOOTING
-## Why can I not analyse a single phage?
+#### Why can I not analyse a single phage?
 You definitly can, but your input must be a directory. 
 Even a single phage must be placed in a folder(directory), and this folder must be assigned as the input for Afili.
 
-## Why do i get fewer hits with more phages?
+#### Why do i get fewer hits with more phages?
 If you analyze multiple phages in one go, all hit-thresholds are calculated based on the average of your fasta-files.
 Phages that differ largely in size would skew the threshold, causing otherwise hits to be missed.
 Afili expect that you want to analyze similar phages. If that is not the case, you should analyze the phages one by one. 
 
-## Why does Afili crash when I did everything right?
+#### Why does Afili crash when I did everything right?
 Did you remember to activate the environment?
 Everytime you want to use Afili in a new terminal remember to activate the environment, in order for Afili to find the dependencies.
 $conda activate afili_env
