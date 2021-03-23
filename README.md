@@ -103,8 +103,8 @@ The number of core genes and the difinition of core genome can be seen lastly in
 
 ### INPUT 
 Afili works with fasta formatted files og phage genomes. 
-Since Afili aims to compare somewhat related genomes, the filtering thresholds are calculated on mean values of the input genomes. 
-If input genomes are of uncomparable lengths, it is suggested to run Afili several times, each on a subset of the input genomes, which indeed are comparable in lengths. 
+It is not recommended to run phages with more than 2x difference in length. In such cases, the phages should be analyzed seperatly.
+All phages analyzed in a single run should come from the specified genus of bacteria. 
 
 ### OUTPUT
 In the folder containing your fasta files, all new phage-like elements are found as seperate fasta files and an output.log file.
