@@ -118,17 +118,17 @@ In the folder RESULTS are the following output files:
 * my_tree_collected_analysis_rerooted.nw: 	A phylogenetic tree in newick format of all phage-like elements and original phage(s).
 * 
 The phage hit names have the following nomeclature:
-###X_Y_phage_Acc
-X = Input-phage specific number
-Y = Number phage found matching input-phage X in genom Acc
-Acc = accession number for the hit genome
+### X_Y_phage_Acc
+ X = Input-phage specific number
+ Y = Number phage found matching input-phage X in genom Acc
+ Acc = accession number for the hit genome
 
 ### TROUBLESHOOTING
 #### Why can I not analyse a single phage?
 You definitly can, but your input must be a directory. 
 Even a single phage must be placed in a folder(directory), and this folder must be assigned as the input for Afili.
 
-### No hits
+#### No hits
 If the complete genomes of the specified genus does not have any hits, a custom database can be made [see "Manual database alterations].
 Else, the thresholds can be manipulated, such as lowering the amount of genes needed to be a match (--genes) or change the precent identity threshold used by BLAST (-i).
 
@@ -142,7 +142,7 @@ Did you remember to activate the environment?
 Everytime you want to use Afili in a new terminal remember to activate the environment, in order for Afili to find the dependencies.
 $conda activate afili_env
 
-### All out of ideas
+#### All out of ideas
 If you still don't have any clue of what goes wrong, check if your input files are in linux format.
 The format can be changed using dos2unix.
 
