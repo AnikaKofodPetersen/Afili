@@ -117,6 +117,21 @@ In the folder RESULTS are the following output files:
 * ANI.pdf:					A picture of the Average Nucleotide Identity heat map
 * my_tree_collected_analysis_rerooted.nw: 	A phylogenetic tree in newick format of all phage-like elements and original phage(s).
 
+### TROUBLESHOOTING
+## Why can I not analyse a single phage?
+You definitly can, but your input must be a directory. 
+Even a single phage must be placed in a folder(directory), and this folder must be assigned as the input for Afili.
+
+## Why do i get fewer hits with more phages?
+If you analyze multiple phages in one go, all hit-thresholds are calculated based on the average of your fasta-files.
+Phages that differ largely in size would skew the threshold, causing otherwise hits to be missed.
+Afili expect that you want to analyze similar phages. If that is not the case, you should analyze the phages one by one. 
+
+## Why does Afili crash when I did everything right?
+Did you remember to activate the environment?
+Everytime you want to use Afili in a new terminal remember to activate the environment, in order for Afili to find the dependencies.
+$conda activate afili_env
+
 
 ### SPECIFICATIONS
 [-h --help Help menu]
