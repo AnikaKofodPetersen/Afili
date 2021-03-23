@@ -24,15 +24,15 @@ if [[ $add == *"-h"* ]] || [[ $add == *"--help"* ]]; then
 	echo "[-F --fasta Folder containing a minimal of 1 fasta file for analysis]"
 	echo "Possible inputs"
 	echo "[-O --output Directory for output files]"
-	echo "[-T --type only uses the typestrains of the specified genus]"
+	echo "[-T --type only uses the typestrains of the specified genus Default:False]"
 	echo "[-a run add-ons in the pipeline (Not yet available)]"
-	echo "[-i --identity (float) Percent identity threshold used in BLAST]"
-	echo "[-cov --coverage (float) Percent query coverage threshold used in BLAST]"
+	echo "[-i --identity (float) Percent identity threshold used in BLAST Default:70]"
+	echo "[-cov --coverage (float) Percent query coverage threshold used in BLAST Default:70]"
 	echo "[-cor --cores (float) Max amount of cores used by Afili]"
-	echo "[--max (float) Maximal percent length relative to average of original samples]"
-	echo "[--min (float) Minimal percent length relative to average of original samples]"
-	echo "[--genes (float) Minimal amount of the orignial genes that should be present in a putative phage]"
-	echo "[--gap (float) Minimal percent of unknown genes in a phage that in a continous stretch would indicate a gap]"
+	echo "[--max (float) Maximal percent length relative to average of original samples Default:150]"
+	echo "[--min (float) Minimal percent length relative to average of original samples Default:50]"
+	echo "[--genes (float) Minimal amount of the orignial genes that should be present in a putative phage Default:60]"
+	echo "[--gap (float) Minimal percent of unknown genes in a phage that in a continous stretch would indicate a gap Default:15]"
 	exit 1
 fi
 
