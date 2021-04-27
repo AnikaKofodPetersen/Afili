@@ -32,6 +32,7 @@ for argument in range(0,len(arguments)):
 		output_folder = curdir +"/"+arguments[argument+1]
 		if os.path.isdir(output_folder):
 			diri = os.listdir(output_folder)
+			"""
 			if "RESULTS" or "RESULTS_FASTA" or "output.log" in diri:
 				print(diri)
 				print("#################################################################################################")
@@ -40,6 +41,7 @@ for argument in range(0,len(arguments)):
 				sys.exit(1)
 			else:
 				pass
+			"""
 		else:
 			os.system("mkdir -p {}".format(output_folder))
 			
