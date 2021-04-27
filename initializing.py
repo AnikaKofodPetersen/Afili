@@ -31,8 +31,8 @@ for argument in range(0,len(arguments)):
 	if arguments[argument].startswith("-O") or arguments[argument].startswith("--output"):
 		output_folder = curdir +"/"+arguments[argument+1]
 		if os.path.isdir(output_folder):
-			dir = os.listdir(output_folder)
-			if "RESULTS" or "RESULTS_FASTA" or "output.log" in dir:
+			diri = os.listdir(output_folder)
+			if "RESULTS" or "RESULTS_FASTA" or "output.log" in diri:
 				print("#################################################################################################")
 				print("This output folder already contains data from a previous run. Please choose another output folder")
 				print("#################################################################################################")
