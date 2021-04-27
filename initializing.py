@@ -33,6 +33,7 @@ for argument in range(0,len(arguments)):
 		if os.path.isdir(output_folder):
 			diri = os.listdir(output_folder)
 			if "RESULTS" or "RESULTS_FASTA" or "output.log" in diri:
+				print(diri)
 				print("#################################################################################################")
 				print("This output folder already contains data from a previous run. Please choose another output folder")
 				print("#################################################################################################")
