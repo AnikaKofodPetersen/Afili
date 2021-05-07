@@ -12,7 +12,7 @@ def get_fastani(filename):
 			row = line.split("\t")
 			headers += [row[0]]
 			for numb in range(len(row)):
-				if row[numb] == None:
+				if row[numb] == "NA":
 					row[numb] == 0
 			if len(row) > 1:
 				ani_matrix += [[float(i) for i in row[1:]]]
