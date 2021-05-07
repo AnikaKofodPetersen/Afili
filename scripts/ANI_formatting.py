@@ -11,11 +11,7 @@ def get_fastani(filename):
 		for line in matrix:
 			row = line.split("\t")
 			headers += [row[0]]
-			for numb in range(len(row)):
-				if row[numb] == "NA":
-					row[numb] == 0
-			if len(row) > 1:
-				ani_matrix += [[float(i) for i in row[1:]]]
+			ani_matrix += [[float(i) for i in row[1:]]]
 
 	#Format accordingly
 	for pos in range(1,len(ani_matrix[-1])+2):
