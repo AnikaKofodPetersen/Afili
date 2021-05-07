@@ -13,9 +13,13 @@ def get_fastani(filename):
 			headers += [row[0]]
 			if "NA" in row or "NA\n" in row:
 				row = "q".join(row)
-				row = row.replace("NA","0")
+				row = row.replace("NA","70")
 				row =  row.rstrip("\n")
 				row = row.split("q")
+				print("##############################################")
+				print("Some ANI values was less than 80%, an thus not computable by FastANI.")
+				print("In order to get proper range for the ANI heatmap, these NA's have been set to 70%")
+				print("##############################################")
 			ani_matrix += [[float(i) for i in row[1:]]]
 
 	#Format accordingly
