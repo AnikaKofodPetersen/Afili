@@ -11,12 +11,12 @@ def get_fastani(filename):
 		for line in matrix:
 			row = line.split("\t")
 			headers += [row[0]]
-			if "NA" in row:
+			if "NA" in row or "NA\n" in row:
 				row = "q".join(row)
 				row = row.replace("NA","0")
 				row =  row.rstrip("\n")
 				row = row.split("q")
-				print(row)
+			print(row)
 			ani_matrix += [[float(i) for i in row[1:]]]
 
 	#Format accordingly
