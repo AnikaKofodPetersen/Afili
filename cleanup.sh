@@ -21,7 +21,8 @@ rm ANI_done > /dev/null 2>&1
 rm heatmaps_done > /dev/null 2>&1
 rm start_done > /dev/null 2>&1
 rm -r add_on_done > /dev/null 2>&1
-rm skip_phylogeny > /dev/null 2>&1
+rm -r skip_phylogeny > /dev/null 2>&1
+rm -r end_snakemake > /dev/null 2>&1
 
 #Move preliminary files
 mkdir preliminary_files > /dev/null 2>&1
