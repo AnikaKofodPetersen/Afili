@@ -133,6 +133,7 @@ if len(predicted_phages) == 0:
 	print("Will not be able to produce the neccessary files. \n\n\n")
 	print("########################################################################\n\n\n")
 	os.system("touch ../end_snakemake")
+	os.chmod("../end_snakemake", 0o777)
 	os.system("touch ../filtering_done")
 	os.system("touch ../collected_analysis_done")
 	os.system("touch ../phylogeny_display_done")
