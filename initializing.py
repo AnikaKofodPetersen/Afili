@@ -155,6 +155,19 @@ if database_present == False:
 		print("Something went wrong while downloading the database fasta files.\n Please try again later or with another genus.")
 		sys.exit(1)
 		
+	#Getting individual fastas for the database
+	print("Formatting databases. This might take a while")
+	for folder in os.listdir("refseq/bacteria/"):
+		for fna in os.listdir("refseq/bacteria/"+folder):
+			if fna.endswith("fna.gz"):
+				os.system("gunzip refseq/bacteria/"+folder+"/"+fna)
+				command = "csplit -z -q -n 4 -b \"%05d.fna\" -f "+fna[:-7]+" refseq/bacteria/"+folder+"/"+fna[:-3]+" /\>/ {*}"
+				os.system(command)
+				os.system("gzip *.fna")
+				os.system("rm refseq/bacteria/{}/{}".format(folder,fna[:-3]))
+		os.system("mv *.fna.gz refseq/bacteria/{}".format(folder))
+		
+		
 	#Collecting both individual fastas and all fastas in one file
 	if typestrain == True:
 		os.system("cat refseq/bacteria/**/*.fna.gz >> " + str(genus) + "T_DNA_cds.fna.gz")
