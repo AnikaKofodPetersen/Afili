@@ -117,7 +117,7 @@ In the folder RESULTS are the following output files:
 * ANI.pdf:					A picture of the Average Nucleotide Identity heat map
 * my_tree_collected_analysis_rerooted.nw: 	A phylogenetic tree in newick format of all phage-like elements and original phage(s).
 * 
-The phage hit names have the following nomeclature:
+The phage hit names have the following nomenclature:
 #### X_Y_phage_Acc
  X = Input-phage specific number.  
  Y = Number phage found matching input-phage X in genom Acc.  
@@ -130,7 +130,7 @@ Even a single phage must be placed in a folder(directory), and this folder must 
 
 #### No hits
 If the complete genomes of the specified genus does not have any hits, a custom database can be made [see "Manual database alterations].
-Else, the thresholds can be manipulated, such as lowering the amount of genes needed to be a match (--genes) or change the precent identity threshold used by BLAST (-i).
+Else, the thresholds can be manipulated, such as lowering the amount of genes needed to be a match (--genes) or change the percent identity threshold used by BLAST (-i).
 
 #### Why do i get fewer hits with more phages?
 If you analyze multiple phages in one go, all hit-thresholds are calculated based on the average of your fasta-files.
