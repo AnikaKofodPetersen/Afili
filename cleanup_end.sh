@@ -23,6 +23,8 @@ rm ANI_done > /dev/null 2>&1
 rm heatmaps_done > /dev/null 2>&1
 rm start_done > /dev/null 2>&1
 rm -r add_on_done > /dev/null 2>&1
+rm -r skip_phylogeny > /dev/null 2>&1
+rm -r end_snakemake > /dev/null 2>&1
 
 #Move originals and results back to starting position
 mv *.fna $fasta_folder > /dev/null 2>&1
