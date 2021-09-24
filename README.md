@@ -4,6 +4,7 @@ The workflow is not restricted to phages by any phage database.
 
 
 ### INSTALLATION
+##### Notice: Installing with conda environment is the preferred method of using Afili. You must have conda installed before using Afili.
 #### *Note: dependencies can be seen in the bottom of this document.
 First, clone the repository:
 
@@ -148,7 +149,6 @@ This will create a custom database made from the fasta files in the folder custo
 [-N --name  The name of your custom database]
 
 
-##### Notice: Installing with conda environment is the preferred method of using Afili. You must have conda installed before using Afili.
 #### Dependencies:
 any2fasta,
 biopython,
