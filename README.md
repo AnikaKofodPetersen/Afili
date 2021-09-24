@@ -5,51 +5,28 @@ The workflow is not restricted to phages by any phage database.
 ##### Notice: Installing with conda environment is the preferred method of using Afili. You must have conda installed before using Afili.
 #### Dependencies:
 any2fasta
-
 biopython
-
 blast-legacy
-
 conda
-
 fastANI
-
 fasttree
-
 hmmer
-
 mummer
-
 mlst
-
 ncbi-genome-download
-
 newick_utils
-
 prokka
-
 parallel
-
 perl
-
 pip
-
 Python 3.7 or higher
-
 r-base
-
 r-pheatmap
-
 readline
-
 roary
-
 samtools
-
 snakemake
-
 tbl2asn
-
 
 
 ### INSTALLATION
