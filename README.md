@@ -8,7 +8,7 @@ The workflow is not restricted to phages by any phage database.
 ###### *Note: dependencies can be seen in the bottom of this document.
 First, clone the repository:
 
-$ git clone https://github.com/AnikaKofodPetersen/Afili.git
+`$ git clone https://github.com/AnikaKofodPetersen/Afili.git`
 
 Second, make Afili executable:
 
