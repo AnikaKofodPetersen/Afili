@@ -12,23 +12,23 @@ First, clone the repository:
 
 Second, make Afili executable:
 
-$ chmod -R 755 Afili/*
+`$ chmod -R 755 Afili/*`
 
 Third, move to the Afili folder and initiate installation of all necessary dependencies and environments:
 
-$ cd /path/to/Afili
+`$ cd /path/to/Afili`
 
-$ conda env create -f afili_env.yml
+`$ conda env create -f afili_env.yml`
 
-$ conda activate afili_env
+`$ conda activate afili_env`
 
-$ prokka --setupdb
+`$ prokka --setupdb`
 
-$ parallel --citation
+`$ parallel --citation`
 
 Lastly, run a test with the available test file as follows:
 
-$ ./afili.sh -F test_fasta/ --genus bacillus -O test_output/
+`$ ./afili.sh -F test_fasta/ --genus bacillus -O test_output/`
 
 This might take a while, including the one-time database download.
 The results are found in the RESULTS folder placed in the test_fasta folder.
@@ -38,7 +38,7 @@ To use the data analysis pipeline, please do the following:
 1) place all prophage sequences in FASTA nucleotide format in a folder
 
 2) call the program in your command line by calling afili.sh with specifications.
-Example: $ /path/to/afili.sh -F /path/to/fasta_folder --genus enterococcus -i 80 -T
+Example: `$ /path/to/afili.sh -F /path/to/fasta_folder --genus enterococcus -i 80 -T`
 
 The example would run the program with the enterococcus genus type strain database while using 80 as the identity threshold for BLAST.
 All specifications are listed below or found with the help menu
@@ -62,19 +62,19 @@ All phages analyzed in a single run should come from the specified genus of bact
 ### OUTPUT
 In the folder containing your fasta files, all new phage-like elements are found as seperate fasta files and an output.log file.
 In the folder RESULTS are the following output files:
-* phage_completeness.txt:	A file containing information of how many genes are shared between the phage-like element and the original phage
-* phage_coordinates.txt:		A file containing information about the coordinates of the phage_like element in the original phage
-* SpeciesMetadata.txt:		A file containing species specification (MLST) on the host in which the phage like element was found
-* orginalsMetadata.txt:		A file containing the names of the original phage(s) for the sake of tree visualization
-* ANI_matrix.txt:			A file containing the Average Nucleotide Identity matrix for the comparrision of all the phage_like elements
-* ANI.pdf:					A picture of the Average Nucleotide Identity heat map
-* my_tree_collected_analysis_rerooted.nw: 	A phylogenetic tree in newick format of all phage-like elements and original phage(s).
+* **phage_completeness.txt**:	A file containing information of how many genes are shared between the phage-like element and the original phage
+* **phage_coordinates.txt**:		A file containing information about the coordinates of the phage_like element in the original phage
+* **SpeciesMetadata.txt**:		A file containing species specification (MLST) on the host in which the phage like element was found
+* **orginalsMetadata.txt**:		A file containing the names of the original phage(s) for the sake of tree visualization
+* **ANI_matrix.txt**:			A file containing the Average Nucleotide Identity matrix for the comparrision of all the phage_like elements
+* **ANI.pdf**:					A picture of the Average Nucleotide Identity heat map
+* **my_tree_collected_analysis_rerooted.nw**: 	A phylogenetic tree in newick format of all phage-like elements and original phage(s).
 * 
 The phage hit names have the following nomenclature:
 #### X_Y_phage_Acc
- X = Input-phage specific number.  
- Y = Number phage found matching input-phage X in genom Acc.  
- Acc = accession number for the hit genome.  
+ **X** = Input-phage specific number.  
+ **Y** = Number phage found matching input-phage X in genom Acc.  
+ **Ac**c = accession number for the hit genome.  
 
 ### TROUBLESHOOTING
 #### Why can I not analyse a single phage?
@@ -135,7 +135,7 @@ Possible inputs
 #### MANUAL DATABASE ALTERATIONS
 The user can make a custom database by using the add_db.py script. This can be done by running the script and specify the path to the fasta files, the path to the Afili/db folder and the name of the database.
 
-Example: $ python add_db.py -F path/to/my/customfolder/ -DB Afili/db/ -N customdatabase
+Example: `$ python add_db.py -F path/to/my/customfolder/ -DB Afili/db/ -N customdatabase`
 
 This will create a custom database made from the fasta files in the folder customfolder. For using this custom database in Afili, use '--genus customdatabase'.
 
